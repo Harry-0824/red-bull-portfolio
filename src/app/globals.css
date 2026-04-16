@@ -1,0 +1,95 @@
+@import "tailwindcss";
+
+:root {
+  --background: #041E42;
+  --foreground: #ffffff;
+  --rbr-navy: #041E42;
+  --rbr-red: #E01E22;
+  --rbr-yellow: #FCD700;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-rbr-navy: var(--rbr-navy);
+  --color-rbr-red: var(--rbr-red);
+  --color-rbr-yellow: var(--rbr-yellow);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+
+  @keyframes shimmer {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(100%);
+    }
+  }
+
+  --animate-shimmer: shimmer 2s infinite linear;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bg-grid-glowing {
+  background-image:
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* Modal & UI Utilities */
+.motion-blur-in {
+  filter: blur(10px);
+  transform: scale(0.9);
+  animation: motion-blur-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes motion-blur-in {
+  to {
+    filter: blur(0);
+    transform: scale(1);
+  }
+}
+
+.glow-pill {
+  box-shadow: 0 0 10px rgba(224, 30, 34, 0.2);
+  border: 1px solid rgba(224, 30, 34, 0.3);
+}
+
+.shimmer-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-effect::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transform: translateX(-100%);
+}
+
+.shimmer-effect:hover::after {
+  animation: shimmer 1.5s infinite;
+}
+
