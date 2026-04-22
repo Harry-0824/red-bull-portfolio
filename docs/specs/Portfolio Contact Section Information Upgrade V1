@@ -1,0 +1,97 @@
+# Task
+
+Portfolio Contact Section Information Upgrade V1
+
+## Context
+
+本專案已建立 Contact section 骨架，並完成 `#contact` anchor 對應。
+目前 Contact section 仍為 placeholder 狀態，尚未提供實際可辨識的聯絡資訊，因此需要進一步整理為可閱讀、可使用、但仍保持簡潔的資訊版。
+
+## Goal
+
+將 Contact section 從 placeholder 區塊升級為第一版實用資訊區，至少提供基本聯絡方式與清楚的文字說明，同時保留日後再升級成完整表單或更完整聯絡模組的空間。
+
+## Scope
+
+本次任務僅處理 Contact section 的資訊升級，包含：
+
+- 將 placeholder 區塊改為實際可讀內容
+- 提供 1 到 3 個聯絡入口
+- 補強 section 說明文字
+- 保持目前首頁視覺風格一致
+- 維持簡潔、可讀、可擴充的結構
+
+## Non-goals
+
+本次任務不包含：
+
+- 真實聯絡表單
+- Email 發送功能
+- 後端 API 串接
+- 驗證邏輯
+- CAPTCHA
+- 第三方表單服務
+- 複雜動畫
+- 大規模視覺重構
+
+## UX / UI Notes
+
+Contact section 第一版資訊區建議至少包含：
+
+- 區塊標題
+- 簡短說明
+- 1 到 3 個聯絡入口，例如：
+  - Email
+  - GitHub
+  - LinkedIn
+
+若尚未決定最終聯絡方式，可先以穩定且真實可使用的公開資訊為主，不建議保留純 placeholder 文案。
+
+資訊呈現需：
+
+- 清楚可讀
+- 不要過度擁擠
+- 不要像正式表單
+- 保持與 Hero / Footer 相同的語氣與品牌感
+
+## Technical Constraints
+
+- 優先沿用現有 ContactSection 元件
+- 不新增不必要依賴
+- 不修改與 Contact section 無關的區塊
+- 不重構 page.tsx 結構
+- 僅修改與 Contact section 直接相關的最小範圍檔案
+- 若需超出範圍，需先說明原因
+
+## Acceptance Criteria
+
+- Contact section 不再只是 placeholder
+- 至少包含一個真實可理解的聯絡入口
+- 內容排版清楚，桌機與手機版皆可讀
+- `#contact` anchor 仍正常可用
+- 不引入新的依賴或不必要互動
+- 修改後專案可正常執行與 build
+- 不破壞其他首頁區塊
+
+## Test Cases
+
+1. 檢查 Contact section 是否已有實際資訊內容
+2. 檢查桌機與手機版排版是否清楚
+3. 若有連結，確認可正常點擊
+4. 點擊 Hero / Navbar 的 `#contact` 導覽仍可正常跳轉
+5. 執行 lint / build，確認未新增明顯錯誤
+
+## Risks
+
+- 若聯絡資訊選擇過多，可能讓區塊失焦
+- 若文案過於 placeholder，則升級價值不足
+- 若資訊呈現太複雜，後續表單導入時可能要再簡化
+
+## Done Definition
+
+當以下條件成立時，視為完成：
+
+- Contact section 第一版資訊升級完成
+- `#contact` 導覽正常
+- 基本人工驗收通過
+- 本次任務可寫回 Tasks 與 Learnings
