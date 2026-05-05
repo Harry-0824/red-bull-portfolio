@@ -15,4 +15,5 @@ export interface Project {
     githubBackend?: string;
   };
   tags: string[];
+  readinessNote?: string;
 }

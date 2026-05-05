@@ -4,69 +4,8 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import ProjectModal from "./ProjectModal";
+import { projects } from "@/data/projects";
 import type { Project } from "@/types/project";
-
-const projects: Project[] = [
-  {
-    title: "互動式天氣預報 App",
-    category: "API 整合應用",
-    description:
-      "根據用戶位置顯示及時天氣資訊，學習處理非同步資料請求與動態背景變換。",
-    objective:
-      "解決複雜 API 資料處理與非同步狀態管理的挑戰，並實作根據天氣動態變動的沉浸式 UI。",
-    stack: ["React", "Rest API", "Framer Motion", "OpenWeather"],
-    metrics: [
-      { label: "API Response Time", value: "120ms" },
-      { label: "Interaction Latency", value: "16ms" },
-    ],
-    image: "/weather-preview.jpg",
-    links: {}, // 無真實連結則不顯示
-    tags: ["React", "Rest API", "Framer Motion"],
-  },
-  {
-    title: "質感高效待辦清單",
-    category: "互動介面設計",
-    description:
-      "結合瀏覽器儲存技術，打造具備流暢動畫與直覺操作的日常工作管理工具。",
-    objective:
-      "探索極簡主義設計與高性能動畫的結合，利用 LocalStorage 確保在離線狀態下也能提供毫秒級響應。",
-    stack: ["TypeScript", "LocalStorage", "CSS Modules", "Zustand"],
-    metrics: [
-      { label: "Bundle Size (Gzipped)", value: "12KB" },
-      { label: "Render Consistency", value: "60FPS" },
-    ],
-    image: "/todo-preview.jpg",
-    links: {}, // 無真實連結則不顯示
-    tags: ["TypeScript", "LocalStorage", "CSS Modules"],
-  },
-  {
-    title: "MG MOTOR 品牌展示網站",
-    category: "品牌展示與全端開發",
-    description:
-      "為 MG 汽車打造的高級品牌展示門戶，整合動態車款目錄、經銷商地圖與線上預約系統。",
-    objective:
-      "利用 React 17 與高級 CSS 技術，將汽車品牌的數位體驗提升至 F1 級別的標準，並整合 RESTful API 實現全端功能。",
-    stack: [
-      "React",
-      "Ant Design",
-      "Styled Components",
-      "Node.js",
-      "Express",
-      "PostgreSQL",
-    ],
-    metrics: [
-      { label: "Page Load Speed", value: "0.8s" },
-      { label: "Conversion Rate", value: "+24%" },
-    ],
-    image: "/projects/mg-motor.png",
-    links: {
-      live: "https://mg-motor.netlify.app/",
-      github: "https://github.com/Harry-0824/MG-motor",
-      githubBackend: "https://github.com/Harry-0824/my-api-project",
-    },
-    tags: ["Full-Stack", "Automotive UI", "API Integration"],
-  },
-];
 
 export default function ProjectGallery() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
@@ -152,9 +91,16 @@ export default function ProjectGallery() {
                   {project.title}
                 </h3>
 
-                <p className="text-gray-400 text-sm mb-6 flex-grow leading-relaxed">
+                <p className="text-gray-400 text-sm mb-2 flex-grow leading-relaxed">
                   {project.description}
                 </p>
+                {project.readinessNote && (
+                  <div className="mb-4">
+                    <span className="block text-xs text-gray-500 font-mono leading-relaxed">
+                      {project.readinessNote}
+                    </span>
+                  </div>
+                )}
 
                 <div className="flex flex-wrap gap-2 mt-auto">
                   {project.tags.map((tag) => (
