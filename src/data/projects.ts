@@ -5,15 +5,23 @@ export const projects: Project[] = [
     title: "互動式天氣預報 App",
     category: "API 整合應用",
     description:
-      "（開發中）預計可根據用戶位置顯示天氣資訊，並嘗試處理非同步資料與動態背景。",
+      "可根據用戶輸入位置顯示天氣資訊，並嘗試處理非同步資料與動態背景。",
     objective:
       "目標是練習 API 資料處理、非同步狀態管理，以及天氣動態對 UI 的影響。",
-    stack: ["React", "Rest API", "Framer Motion", "OpenWeather"],
+    stack: [
+      "React",
+      "Rest API",
+      "Framer Motion",
+      "OpenWeather",
+      "Styled Components",
+    ],
     metrics: [],
-    image: "",
-    links: {},
+    image: "/projects/Weather-App.png",
+    links: {
+      live: "https://bejewelled-scone-ae225c.netlify.app/",
+      github: "https://github.com/Harry-0824/weather-app",
+    },
     tags: ["React", "Rest API", "Framer Motion"],
-    readinessNote: "This project is not yet public or still in development.",
   },
   {
     title: "質感高效待辦清單",
