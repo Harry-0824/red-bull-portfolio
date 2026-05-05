@@ -24,7 +24,7 @@ function ImageWithFallback({ src, alt }: ImageWithFallbackProps) {
     return (
       <div className="flex flex-col items-center justify-center w-full h-full text-gray-600 opacity-60">
         <ImageIcon size={48} className="mb-2" />
-        <span className="text-xs font-mono">No Image</span>
+        <span className="text-xs font-mono">暫無圖片</span>
       </div>
     );
   }
@@ -83,12 +83,12 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                 {project.image ? (
                   <ImageWithFallback
                     src={project.image}
-                    alt={`${project.title} project screenshot`}
+                    alt={`${project.title} 專案截圖`}
                   />
                 ) : (
                   <div className="flex flex-col items-center justify-center w-full h-full text-gray-600 opacity-60">
                     <ImageIcon size={48} className="mb-2" />
-                    <span className="text-xs font-mono">No Image</span>
+                    <span className="text-xs font-mono">暫無圖片</span>
                   </div>
                 )}
               </div>
@@ -96,8 +96,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
               <div className="p-8 space-y-8 max-h-[70vh] overflow-y-auto custom-scrollbar">
                 <section>
                   <h4 className="text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
-                    <span className="w-4 h-[1px] bg-rbr-red" /> Mission
-                    Objective
+                    <span className="w-4 h-[1px] bg-rbr-red" /> 專案目標
                   </h4>
                   <p className="text-gray-300 text-sm leading-relaxed font-medium">
                     {project.objective}
@@ -114,7 +113,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
 
                 <section>
                   <h4 className="text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
-                    <span className="w-4 h-[1px] bg-rbr-red" /> Technical Stack
+                    <span className="w-4 h-[1px] bg-rbr-red" /> 技術堆疊
                   </h4>
                   <div className="flex flex-wrap gap-2">
                     {project.stack.map((tech) => (
@@ -131,8 +130,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                 {project.metrics.length > 0 && (
                   <section>
                     <h4 className="text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
-                      <span className="w-4 h-[1px] bg-rbr-red" /> Performance
-                      Metrics
+                      <span className="w-4 h-[1px] bg-rbr-red" /> 成果指標
                     </h4>
                     <div className="grid grid-cols-2 gap-4">
                       {project.metrics.map((metric) => (
@@ -163,7 +161,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                         rel="noopener noreferrer"
                         className="flex-1 bg-rbr-red hover:bg-red-700 text-white font-black italic uppercase text-xs py-4 rounded-sm flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(224,30,34,0.3)]"
                       >
-                        Launch Project <ExternalLink size={14} />
+                        查看網站 <ExternalLink size={14} />
                       </a>
                     )}
 
@@ -177,8 +175,8 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                             className="w-full border border-white/20 hover:border-white/40 text-white font-black italic uppercase text-xs py-2 rounded-sm flex items-center justify-center gap-2 transition-all"
                           >
                             {project.links.githubBackend
-                              ? "Frontend Code"
-                              : "Inspect Source"}{" "}
+                              ? "前端原始碼"
+                              : "查看原始碼"}{" "}
                             <Github size={14} />
                           </a>
                         )}
@@ -190,7 +188,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                             rel="noopener noreferrer"
                             className="w-full border border-white/20 hover:border-white/40 text-white font-black italic uppercase text-xs py-2 rounded-sm flex items-center justify-center gap-2 transition-all"
                           >
-                            Backend Code <Github size={14} />
+                            後端原始碼 <Github size={14} />
                           </a>
                         )}
                       </div>

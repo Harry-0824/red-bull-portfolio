@@ -7,10 +7,10 @@ export default function ContactSection() {
       className="py-24 px-4 bg-rbr-navy border-t border-white/5 flex flex-col items-center justify-center"
     >
       <h2 className="text-3xl md:text-5xl font-black text-white mb-6 tracking-tight">
-        聯絡我
+        聯絡合作
       </h2>
       <p className="text-gray-400 max-w-xl text-center mb-8">
-        歡迎合作、交流或討論新想法！請透過下方方式聯繫。
+        若你正在尋找前端工程師、需要作品討論或想交流技術實作，歡迎透過 Email 或 GitHub 聯繫。
       </p>
       {/* 聯絡資訊區塊 */}
       <div className="w-full max-w-md bg-white/5 rounded-lg border border-white/10 flex flex-col items-center justify-center py-8 gap-4">

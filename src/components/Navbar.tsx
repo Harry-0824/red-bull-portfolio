@@ -3,16 +3,17 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navLinks = [
-    { name: "效能指標", id: "performance" },
-    { name: "專案展示", id: "projects" },
-    { name: "數據統計", id: "stats" },
-    { name: "聯絡我", id: "contact" },
+    { name: "技術能力", id: "performance" },
+    { name: "專案作品", id: "projects" },
+    { name: "職涯經歷", id: "stats" },
+    { name: "聯絡方式", id: "contact" },
   ];
 
   return (
@@ -20,9 +21,17 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
         <Link
           href="/"
-          className="text-xl font-black italic tracking-tighter text-white"
+          className="text-xl font-black italic tracking-tighter text-white flex items-center gap-2"
         >
-          PRINC<span className="text-rbr-red text-2xl">.</span>
+          <Image
+            src="/brand/apex-flow-logo.svg"
+            alt=""
+            width={28}
+            height={28}
+            className="h-7 w-7"
+            priority
+          />
+          <span>Apex Flow</span>
         </Link>
 
         {/* Desktop Menu */}

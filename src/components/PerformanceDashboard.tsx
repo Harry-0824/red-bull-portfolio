@@ -9,10 +9,21 @@ const skills = [
     level: 95,
     icon: <Code2 className="text-rbr-yellow" />,
   },
-  { name: "TypeScript", level: 90, icon: <Cpu className="text-rbr-yellow" /> },
+  {
+    name: "TypeScript",
+    level: 70,
+    status: "學習中",
+    icon: <Cpu className="text-rbr-yellow" />,
+  },
+  {
+    name: "Styled Components / SCSS",
+    level: 98,
+    icon: <Layers className="text-rbr-yellow" />,
+  },
   {
     name: "Tailwind CSS",
-    level: 98,
+    level: 70,
+    status: "學習中",
     icon: <Layers className="text-rbr-yellow" />,
   },
   {
@@ -34,17 +45,17 @@ export default function PerformanceDashboard() {
       className="py-24 px-4 bg-rbr-navy border-t border-white/5"
     >
       <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
           <div>
             <span className="text-rbr-red font-mono font-bold tracking-tighter">
-              PHASE 2 // 遙測數據
+              SKILLS // 技術能力
             </span>
-            <h2 className="text-4xl font-black mt-2">技術性能指標</h2>
+            <h2 className="text-4xl font-black mt-2">核心前端能力</h2>
           </div>
-          <div className="text-right font-mono text-sm text-gray-500">
-            系統狀態：<span className="text-green-500">已優化</span>
+          <div className="text-left md:text-right font-mono text-sm text-gray-500">
+            專注方向：<span className="text-green-500">前端開發</span>
             <br />
-            運行時間：99.9% 上線率
+            工作方式：重視可維護性
           </div>
         </div>
 
@@ -63,9 +74,7 @@ export default function PerformanceDashboard() {
                   {skill.icon}
                 </div>
                 <div className="text-right">
-                  <div className="text-xs font-mono text-gray-500">
-                    動力等級
-                  </div>
+                  <div className="text-xs font-mono text-gray-500">熟悉度</div>
                   <div className="text-2xl font-black text-rbr-yellow italic">
                     {skill.level}%
                   </div>
@@ -74,7 +83,7 @@ export default function PerformanceDashboard() {
 
               <div className="mb-2 flex justify-between items-center text-xs font-bold uppercase tracking-widest text-gray-400">
                 <span>{skill.name}</span>
-                <span>狀態：正常</span>
+                <span>{skill.status ?? "可應用"}</span>
               </div>
 
               <div className="h-2 bg-rbr-navy border border-white/10 rounded-full overflow-hidden">
@@ -98,10 +107,10 @@ export default function PerformanceDashboard() {
           >
             <div className="relative z-10 text-white">
               <h3 className="text-2xl font-black mb-2 uppercase italic">
-                精益求精的成長心態
+                以可維護性與使用體驗為核心
               </h3>
               <p className="text-white/80 max-w-md font-medium">
-                專注於基礎概念的紮實理解，並以極致效能為目標持續優化程式碼品質。每一行代碼都是為了更好的用戶體驗。
+                重視元件結構、資料流與程式碼可讀性，讓介面不只完成需求，也能支撐後續維護與迭代。
               </p>
             </div>
             <div className="mt-8 flex items-baseline gap-2 relative z-10 text-white">
@@ -109,7 +118,7 @@ export default function PerformanceDashboard() {
                 100%
               </span>
               <span className="text-sm font-bold uppercase">
-                對新技術的學習熱情
+                持續學習與改善
               </span>
             </div>
 

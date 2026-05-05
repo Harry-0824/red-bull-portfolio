@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "PRINC | 前端工程師 - 追求極致效能的網頁開發者",
-  description: "專注於打造如 F1 賽車般精確且高效的網頁介面。致力於學習與應用 React, Next.js 最新技術。",
+  title: "Apex Flow | 前端工程師作品集",
+  description:
+    "前端工程師作品集，聚焦 React、Next.js、TypeScript、互動介面、效能優化與全端資料整合。",
 };
 
 export default function RootLayout({

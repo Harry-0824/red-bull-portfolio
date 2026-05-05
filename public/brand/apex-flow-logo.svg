@@ -1,0 +1,9 @@
+<svg width="160" height="160" viewBox="0 0 160 160" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="apex-flow-title">
+  <title id="apex-flow-title">Apex Flow Logo</title>
+  <g stroke="#FFFFFF" stroke-width="3" stroke-linejoin="round">
+    <path d="M36 122L76 34H96L58 122H36Z" fill="#E01E22"/>
+    <path d="M96 34L124 122H101L90 84H69L78 63H96L88 34H96Z" fill="#041E42"/>
+  </g>
+  <path d="M38 122C67 94 98 83 128 88" stroke="#FCD700" stroke-width="10" stroke-linecap="round"/>
+  <path d="M51 122C75 103 100 96 125 100" stroke="#041E42" stroke-width="4" stroke-linecap="round"/>
+</svg>

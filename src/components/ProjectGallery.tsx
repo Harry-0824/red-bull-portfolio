@@ -21,10 +21,10 @@ export default function ProjectGallery() {
       <div className="max-w-6xl mx-auto">
         <div className="mb-16">
           <h2 className="text-4xl font-black italic tracking-tighter mb-4 inline-block border-b-4 border-rbr-red text-white">
-            大獎賽專案集
+            精選專案作品
           </h2>
           <p className="text-gray-400 mt-4 max-w-xl font-bold uppercase tracking-widest text-xs">
-            由空氣動力學效率驅動的精確工程應用程式精選。
+            以 React / Next.js 前端實作為主，整理需求拆解、介面互動與資料串接的實作案例。
           </p>
         </div>
 

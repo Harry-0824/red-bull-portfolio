@@ -3,11 +3,11 @@ import type { Project } from "@/types/project";
 export const projects: Project[] = [
   {
     title: "互動式天氣預報 App",
-    category: "API 整合應用",
+    category: "API 串接與互動介面",
     description:
-      "可根據用戶輸入位置顯示天氣資訊，並嘗試處理非同步資料與動態背景。",
+      "以 React 串接 OpenWeather API，依使用者輸入呈現即時天氣資訊與對應的動態介面狀態。",
     objective:
-      "目標是練習 API 資料處理、非同步狀態管理，以及天氣動態對 UI 的影響。",
+      "練習非同步資料處理、API 回應狀態管理與 UI 回饋設計，讓使用者能快速查詢並理解天氣結果。",
     stack: [
       "React",
       "Rest API",
@@ -25,23 +25,25 @@ export const projects: Project[] = [
   },
   {
     title: "質感高效待辦清單",
-    category: "互動介面設計",
-    description: "（開發中）嘗試結合瀏覽器儲存與動畫，設計直覺的工作管理介面。",
-    objective: "目標是探索極簡設計、動畫表現，以及 LocalStorage 的應用。",
+    category: "狀態管理與任務介面",
+    description:
+      "開發中的任務管理工具，聚焦 TypeScript 狀態設計、瀏覽器儲存與清楚的操作回饋。",
+    objective:
+      "規劃以 LocalStorage 保存任務狀態，並透過簡潔互動降低新增、完成與整理任務的操作成本。",
     stack: ["TypeScript", "LocalStorage", "CSS Modules", "Zustand"],
     metrics: [],
     image: "",
     links: {},
     tags: ["TypeScript", "LocalStorage", "CSS Modules"],
-    readinessNote: "This project is not yet public or still in development.",
+    readinessNote: "此專案尚未公開，內容仍在整理與開發中。",
   },
   {
     title: "MG MOTOR 品牌展示網站",
-    category: "品牌展示與全端開發",
+    category: "品牌網站與全端整合",
     description:
-      "MG 汽車品牌展示網站，包含車款目錄、經銷商地圖與線上預約等功能。",
+      "汽車品牌展示網站，整合車款目錄、經銷商地圖與線上預約流程，呈現完整前後端串接案例。",
     objective:
-      "以 React 17 與 CSS 技術，提升汽車品牌的數位體驗，並整合 RESTful API 實作全端功能。",
+      "以前端頁面呈現品牌內容與主要使用流程，並透過 Node.js、Express、PostgreSQL 與 RESTful API 完成資料整合。",
     stack: [
       "React",
       "Ant Design",

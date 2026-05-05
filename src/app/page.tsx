@@ -21,8 +21,8 @@ export default function Home() {
       <footer className="py-12 border-t border-white/5 text-center text-xs font-mono text-gray-600">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-2">
           <div>
-            &copy; {new Date().getFullYear()} PRINC{" "}
-            <span className="text-rbr-red">/ /</span> 專為速度而生
+            &copy; {new Date().getFullYear()} Apex Flow{" "}
+            <span className="text-rbr-red">/ /</span> 前端作品集 / 持續優化中
           </div>
           <div className="flex gap-4 mt-2">
             <a
