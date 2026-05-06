@@ -45,6 +45,16 @@ Do not use `yarn`, `pnpm`, or `bun` for this project unless the project maintain
 
 Create branches from `main` unless the issue says otherwise.
 
+## UI and Design Rules
+
+For UI-related changes, always read and follow `DESIGN.md`.
+
+Do not introduce unrelated visual styles, new UI libraries, or broad redesigns unless explicitly requested by the GitHub Issue.
+
+Each UI task should stay limited to the page, section, or component group described in the Issue.
+
+Do not copy visual references pixel-by-pixel. Use them only as design direction and convert them into maintainable implementation.
+
 ## Validation
 
 Before opening a pull request:
