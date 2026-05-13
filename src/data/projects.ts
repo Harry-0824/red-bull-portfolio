@@ -27,15 +27,17 @@ export const projects: Project[] = [
     title: "質感高效待辦清單",
     category: "狀態管理與任務介面",
     description:
-      "開發中的任務管理工具，聚焦 TypeScript 狀態設計、瀏覽器儲存與清楚的操作回饋。",
+      "任務管理工具，聚焦 JavaScript 狀態設計、瀏覽器儲存與清楚的操作回饋。",
     objective:
       "規劃以 LocalStorage 保存任務狀態，並透過簡潔互動降低新增、完成與整理任務的操作成本。",
-    stack: ["TypeScript", "LocalStorage", "CSS Modules", "Zustand"],
+    stack: ["JavaScript", "LocalStorage", "styled-components", "React 19"],
     metrics: [],
-    image: "",
-    links: {},
-    tags: ["TypeScript", "LocalStorage", "CSS Modules"],
-    readinessNote: "此專案尚未公開，內容仍在整理與開發中。",
+    image: "/projects/ToDoList.png",
+    links: {
+      live: "https://peaceful-genie-980c98.netlify.app/",
+      github: "https://github.com/Harry-0824/To_DoList_React",
+    },
+    tags: ["JavaScript", "LocalStorage", "styled-components"],
   },
   {
     title: "MG MOTOR 品牌展示網站",
