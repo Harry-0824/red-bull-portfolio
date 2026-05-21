@@ -2,6 +2,31 @@ import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    title: "My Brand Workspace 工作台 SaaS",
+    category: "個人品牌與接案管理系統",
+    description:
+      "以 React 建立給自由工作者使用的工作台 SaaS，整合專案、任務、客戶、收款紀錄、儀表板與報表等核心管理功能。",
+    objective:
+      "練習 SaaS 產品介面設計、CRUD 狀態管理、Supabase 資料串接與前端功能整合，打造可登入、可操作、可部署驗收的 MVP。",
+    stack: [
+      "React",
+      "TypeScript",
+      "Vite",
+      "Styled Components",
+      "Supabase",
+      "Vitest",
+      "Testing Library",
+      "Netlify",
+    ],
+    metrics: [],
+    image: "/projects/My-Brand-Workspace.png",
+    links: {
+      live: "https://harry-brand-workspace.netlify.app/",
+      github: "https://github.com/Harry-0824/my-brand-workspace",
+    },
+    tags: ["React", "TypeScript", "Supabase", "SaaS"],
+  },
+  {
     title: "互動式天氣預報 App",
     category: "API 串接與互動介面",
     description:
