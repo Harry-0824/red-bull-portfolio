@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Apex Flow | 前端工程師作品集
+
+## Overview
+
+Apex Flow is a personal frontend engineer portfolio built to present selected projects, technical skills, and frontend implementation experience in a polished single-page website.
+
+The site focuses on clear project storytelling, responsive portfolio presentation, and maintainable frontend code using the Next.js App Router stack.
+
+## Live Demo
+
+The project is intended to be deployed on Netlify, and the repository includes Netlify configuration.
+
+The production URL is not currently recorded in this repository. Once the live site URL is confirmed, add it here.
+
+## Tech Stack
+
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Framer Motion
+- Lucide React
+- ESLint
+- Netlify
+- npm
+
+## Features
+
+- Hero section for the Apex Flow portfolio identity.
+- Performance-style dashboard section for frontend skill positioning.
+- Race history section for career and project narrative.
+- Project gallery for selected portfolio projects.
+- Project detail modal for deeper project context.
+- Contact section with GitHub profile access.
+- Responsive layout designed for portfolio browsing.
+
+## Project Structure
+
+```text
+red-bull-portfolio/
++-- public/
+|   +-- brand/
+|   +-- projects/
++-- src/
+|   +-- app/
+|   +-- components/
+|   +-- data/
+|   +-- types/
++-- AGENTS.md
++-- DESIGN.md
++-- netlify.toml
++-- package.json
++-- README.md
+```
 
 ## Getting Started
 
-First, run the development server:
+Clone the repository and install dependencies with npm:
+
+```bash
+git clone https://github.com/Harry-0824/red-bull-portfolio.git
+cd red-bull-portfolio
+npm install
+```
+
+Start the local development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run dev
+```
 
-## Learn More
+Starts the local Next.js development server.
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Creates a production build.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run lint
+```
 
-## Deploy on Vercel
+Runs ESLint checks.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```bash
+npm run start
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Starts the production server after a successful build.
+
+## Notes
+
+- This is a documentation-only README update for the portfolio repository.
+- The README uses npm commands only.
+- No screenshots are included in this version.
+- The confirmed production URL should be added when it is available.
