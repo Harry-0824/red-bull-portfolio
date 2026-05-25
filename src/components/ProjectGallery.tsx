@@ -36,8 +36,7 @@ export default function ProjectGallery() {
             精選專案作品
           </h2>
           <p className="text-gray-400 mt-4 max-w-xl font-bold uppercase tracking-widest text-xs">
-            以 React / Next.js
-            前端實作為主，整理需求拆解、介面互動與資料串接的實作案例。
+            以 React / Next.js 前端實作為主，整理需求拆解、介面互動與資料串接的實作案例。
           </p>
         </div>
 
