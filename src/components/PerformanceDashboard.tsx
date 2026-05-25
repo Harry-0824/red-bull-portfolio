@@ -1,130 +1,197 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Cpu, Code2, Layers, BarChart3, Activity } from "lucide-react";
+import {
+  Activity,
+  BarChart3,
+  Code2,
+  Cpu,
+  Layers,
+  ShieldCheck,
+} from "lucide-react";
 
 const skills = [
   {
     name: "React / Next.js",
-    level: 95,
-    icon: <Code2 className="text-rbr-yellow" />,
+    category: "核心前端技術",
+    usage: "用於作品集頁面、App Router 版面與可重用頁面區塊。",
+    evidence: [
+      "以元件化方式拆分作品集區塊，讓每個區塊責任清楚。",
+      "使用 Next.js App Router 組合頁面結構與部署流程。",
+      "把專案敘事和可維護的 React 結構連在一起。",
+    ],
+    icon: Code2,
+    accent: "text-rbr-yellow",
   },
   {
     name: "TypeScript",
-    level: 70,
-    status: "學習中",
-    icon: <Cpu className="text-rbr-yellow" />,
+    category: "可維護性",
+    usage: "用於型別化專案資料、元件 props 與前端資料契約。",
+    evidence: [
+      "用明確型別描述專案內容與共用資料結構。",
+      "讓作品集資料在區塊調整時仍維持可預測。",
+      "把資料形狀寫清楚，降低 review 與維護成本。",
+    ],
+    icon: Cpu,
+    accent: "text-rbr-yellow",
   },
   {
-    name: "Styled Components / SCSS",
-    level: 98,
-    icon: <Layers className="text-rbr-yellow" />,
+    name: "樣式系統",
+    category: "UI 實作",
+    usage: "使用 Tailwind CSS、styled-components、SCSS 與響應式版面。",
+    evidence: [
+      "把視覺方向轉成可重用、可響應的 UI 區塊。",
+      "在不同斷點維持深色、高對比的作品集風格。",
+      "優先沿用既有樣式做法，不額外加入 UI library。",
+    ],
+    icon: Layers,
+    accent: "text-rbr-yellow",
   },
   {
-    name: "Tailwind CSS",
-    level: 70,
-    status: "學習中",
-    icon: <Layers className="text-rbr-yellow" />,
+    name: "API 整合",
+    category: "產品流程",
+    usage: "用於天氣資料、後端 API 流程與 Supabase 資料串接。",
+    evidence: [
+      "把前端畫面接到真實 API 驅動的專案案例。",
+      "在需要時處理使用者看得到的 loading、empty、error state。",
+      "讓資料整合集中在目標功能流程，避免擴散到無關區塊。",
+    ],
+    icon: Activity,
+    accent: "text-rbr-red",
   },
   {
-    name: "Performance Optimization",
-    level: 92,
-    icon: <Activity className="text-rbr-red" />,
+    name: "測試 / 驗證",
+    category: "品質訊號",
+    usage: "使用 lint、build、聚焦 UI 驗證與可 review 的 diff。",
+    evidence: [
+      "在送出實作 PR 前執行 repo 檢查。",
+      "用聚焦驗證取代大範圍、無關的重寫。",
+      "把變更維持在 code review 能有效檢查的大小。",
+    ],
+    icon: ShieldCheck,
+    accent: "text-rbr-red",
   },
   {
-    name: "System Architecture",
-    level: 85,
-    icon: <BarChart3 className="text-rbr-red" />,
+    name: "前端架構",
+    category: "系統思維",
+    usage: "用於功能邊界、資料模組與頁面層級組合。",
+    evidence: [
+      "在有實際幫助時拆分頁面區塊、資料與共用型別。",
+      "避免沒有必要的抽象，等它能降低複雜度時才加入。",
+      "優先維持清楚結構，方便後續維護與交接。",
+    ],
+    icon: BarChart3,
+    accent: "text-rbr-red",
   },
+];
+
+const interviewSignals = [
+  "用專案證據取代主觀分數",
+  "證據連到作品集、SaaS、API、UI 與驗證工作",
+  "卡片內容可支援履歷初篩與技術面試討論",
 ];
 
 export default function PerformanceDashboard() {
   return (
     <section
       id="performance"
-      className="py-24 px-4 bg-rbr-navy border-t border-white/5"
+      className="relative bg-rbr-navy border-t border-white/5 px-4 py-24"
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span className="text-rbr-red font-mono font-bold tracking-tighter">
-              SKILLS // 技術能力
+            <span className="font-mono text-sm font-bold text-rbr-red">
+              技能 // 面試證據
             </span>
-            <h2 className="text-4xl font-black mt-2">核心前端能力</h2>
+            <h2 className="mt-2 text-4xl font-black text-white">
+              用專案成果證明技能
+            </h2>
           </div>
-          <div className="text-left md:text-right font-mono text-sm text-gray-500">
-            專注方向：<span className="text-green-500">前端開發</span>
-            <br />
-            工作方式：重視可維護性
-          </div>
+          <p className="max-w-xl text-left font-mono text-sm text-gray-400 md:text-right">
+            能力不靠百分比說明，而是透過已完成的頁面區塊、型別化資料、
+            API 流程、驗證習慣與可維護的實作選擇來呈現。
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white/5 border border-white/10 p-6 rounded-lg group hover:border-rbr-yellow/50 hover:bg-white/10 transition-all cursor-crosshair"
-            >
-              <div className="flex justify-between items-start mb-4">
-                <div className="p-3 bg-rbr-navy rounded-sm border border-white/10 group-hover:scale-110 transition-transform">
-                  {skill.icon}
-                </div>
-                <div className="text-right">
-                  <div className="text-xs font-mono text-gray-500">熟悉度</div>
-                  <div className="text-2xl font-black text-rbr-yellow italic">
-                    {skill.level}%
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {skills.map((skill, index) => {
+            const SkillIcon = skill.icon;
+
+            return (
+              <motion.article
+                key={skill.name}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="group flex min-h-[22rem] flex-col rounded-lg border border-white/10 bg-white/5 p-6 transition-all hover:border-rbr-yellow/50 hover:bg-white/10"
+              >
+                <div className="mb-6 flex items-start justify-between gap-4">
+                  <div className="rounded-sm border border-white/10 bg-rbr-navy p-3 transition-transform group-hover:scale-105">
+                    <SkillIcon className={skill.accent} aria-hidden="true" />
                   </div>
+                  <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-right font-mono text-xs font-bold uppercase text-gray-300">
+                    {skill.category}
+                  </span>
                 </div>
-              </div>
 
-              <div className="mb-2 flex justify-between items-center text-xs font-bold uppercase tracking-widest text-gray-400">
-                <span>{skill.name}</span>
-                <span>{skill.status ?? "可應用"}</span>
-              </div>
+                <div className="mb-5">
+                  <h3 className="text-xl font-black uppercase italic text-white">
+                    {skill.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-gray-300">
+                    {skill.usage}
+                  </p>
+                </div>
 
-              <div className="h-2 bg-rbr-navy border border-white/10 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
-                  viewport={{ once: true }}
-                  className="h-full bg-gradient-to-r from-rbr-red to-rbr-yellow"
-                />
-              </div>
-            </motion.div>
-          ))}
+                <ul className="mt-auto space-y-3">
+                  {skill.evidence.map((item) => (
+                    <li
+                      key={item}
+                      className="flex gap-3 text-sm leading-6 text-gray-200"
+                    >
+                      <span
+                        className="mt-2 h-2 w-2 shrink-0 rounded-full bg-rbr-yellow"
+                        aria-hidden="true"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.article>
+            );
+          })}
 
-          {/* Large Dashboard Metric */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+          <motion.aside
+            initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 bg-rbr-red p-8 rounded-lg flex flex-col justify-between overflow-hidden relative"
+            className="relative overflow-hidden rounded-lg bg-rbr-red p-8 text-white md:col-span-2 lg:col-span-3"
           >
-            <div className="relative z-10 text-white">
-              <h3 className="text-2xl font-black mb-2 uppercase italic">
-                以可維護性與使用體驗為核心
+            <div className="relative z-10 max-w-3xl">
+              <span className="font-mono text-sm font-bold uppercase text-white/75">
+                求職面試訊號
+              </span>
+              <h3 className="mt-3 text-2xl font-black uppercase italic md:text-3xl">
+                技能呈現改用證據脈絡，不再依賴百分比分數。
               </h3>
-              <p className="text-white/80 max-w-md font-medium">
-                重視元件結構、資料流與程式碼可讀性，讓介面不只完成需求，也能支撐後續維護與迭代。
-              </p>
-            </div>
-            <div className="mt-8 flex items-baseline gap-2 relative z-10 text-white">
-              <span className="text-6xl font-black italic tracking-tighter">
-                100%
-              </span>
-              <span className="text-sm font-bold uppercase">
-                持續學習與改善
-              </span>
+              <div className="mt-6 grid gap-3 md:grid-cols-3">
+                {interviewSignals.map((signal) => (
+                  <div
+                    key={signal}
+                    className="rounded-md border border-white/20 bg-black/15 p-4 text-sm font-semibold leading-6 text-white/90"
+                  >
+                    {signal}
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Background Accent */}
-            <BarChart3 className="absolute -right-10 -bottom-10 w-64 h-64 text-black/10 -rotate-12" />
-          </motion.div>
+            <BarChart3
+              className="absolute -bottom-12 -right-8 h-56 w-56 -rotate-12 text-black/10"
+              aria-hidden="true"
+            />
+          </motion.aside>
         </div>
       </div>
     </section>
