@@ -5,16 +5,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
+import { navLinks } from "@/data/navLinks";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const navLinks = [
-    { name: "技術能力", id: "performance" },
-    { name: "專案作品", id: "projects" },
-    { name: "職涯經歷", id: "stats" },
-    { name: "聯絡方式", id: "contact" },
-  ];
 
   return (
     <nav className="fixed top-0 left-0 w-full z-50 bg-rbr-navy/80 backdrop-blur-md border-b border-white/5">
