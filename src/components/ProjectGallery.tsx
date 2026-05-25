@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { type KeyboardEvent, useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import ProjectModal from "./ProjectModal";
@@ -14,6 +14,18 @@ export default function ProjectGallery() {
   const handleProjectClick = (project: Project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
+  };
+
+  const handleProjectKeyDown = (
+    event: KeyboardEvent<HTMLDivElement>,
+    project: Project,
+  ) => {
+    if (event.currentTarget !== event.target) return;
+
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleProjectClick(project);
+    }
   };
 
   return (
@@ -37,6 +49,10 @@ export default function ProjectGallery() {
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
               onClick={() => handleProjectClick(project)}
+              onKeyDown={(event) => handleProjectKeyDown(event, project)}
+              role="button"
+              tabIndex={0}
+              aria-label={`開啟專案詳細資訊：${project.title}`}
               className="relative group cursor-pointer"
             >
               {/* Carbon Fiber Background Effect */}
