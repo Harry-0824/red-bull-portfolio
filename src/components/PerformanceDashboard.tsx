@@ -21,7 +21,7 @@ export default function PerformanceDashboard() {
             </h2>
           </div>
           <p className="max-w-xl text-left font-mono text-sm text-gray-400 md:text-right">
-            能力不靠百分比說明，而是透過已完成的頁面區塊、型別化資料、 API
+            能力不靠百分比說明，而是透過已完成的頁面區塊、型別化資料、API
             流程、驗證習慣與可維護的實作選擇來呈現。
           </p>
         </div>
