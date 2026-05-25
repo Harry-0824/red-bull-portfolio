@@ -18,7 +18,11 @@ export const projects: Project[] = [
       "Testing Library",
       "Netlify",
     ],
-    metrics: [],
+    metrics: [
+      { label: "核心功能", value: "專案 / 客戶 / 任務" },
+      { label: "資料整合", value: "Supabase" },
+      { label: "驗證", value: "Vitest / Testing Library" },
+    ],
     image: "/projects/My-Brand-Workspace.png",
     links: {
       live: "https://harry-brand-workspace.netlify.app/",
@@ -40,7 +44,11 @@ export const projects: Project[] = [
       "OpenWeather",
       "Styled Components",
     ],
-    metrics: [],
+    metrics: [
+      { label: "API 串接", value: "OpenWeather" },
+      { label: "UI 重點", value: "即時天氣查詢" },
+      { label: "互動呈現", value: "Framer Motion" },
+    ],
     image: "/projects/Weather-App.png",
     links: {
       live: "https://bejewelled-scone-ae225c.netlify.app/",
@@ -56,7 +64,11 @@ export const projects: Project[] = [
     objective:
       "規劃以 LocalStorage 保存任務狀態，並透過簡潔互動降低新增、完成與整理任務的操作成本。",
     stack: ["JavaScript", "LocalStorage", "styled-components", "React 19"],
-    metrics: [],
+    metrics: [
+      { label: "核心功能", value: "待辦新增 / 狀態管理" },
+      { label: "資料保存", value: "LocalStorage" },
+      { label: "UI 實作", value: "styled-components" },
+    ],
     image: "/projects/ToDoList.png",
     links: {
       live: "https://peaceful-genie-980c98.netlify.app/",
@@ -79,7 +91,11 @@ export const projects: Project[] = [
       "Express",
       "PostgreSQL",
     ],
-    metrics: [],
+    metrics: [
+      { label: "前端呈現", value: "MG 車款頁面" },
+      { label: "API 架構", value: "Express / PostgreSQL" },
+      { label: "部署", value: "Netlify 前端" },
+    ],
     image: "/projects/mg-motor.png",
     links: {
       live: "https://mg-motor.netlify.app/",
