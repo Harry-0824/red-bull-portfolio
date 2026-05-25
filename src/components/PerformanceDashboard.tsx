@@ -1,130 +1,197 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Cpu, Code2, Layers, BarChart3, Activity } from "lucide-react";
+import {
+  Activity,
+  BarChart3,
+  Code2,
+  Cpu,
+  Layers,
+  ShieldCheck,
+} from "lucide-react";
 
 const skills = [
   {
     name: "React / Next.js",
-    level: 95,
-    icon: <Code2 className="text-rbr-yellow" />,
+    category: "Core frontend stack",
+    usage: "Portfolio pages, App Router layout, and reusable page sections.",
+    evidence: [
+      "Builds component-based portfolio sections with clear ownership.",
+      "Uses Next.js App Router patterns for page composition and deployment.",
+      "Connects project storytelling with maintainable React structure.",
+    ],
+    icon: Code2,
+    accent: "text-rbr-yellow",
   },
   {
     name: "TypeScript",
-    level: 70,
-    status: "學習中",
-    icon: <Cpu className="text-rbr-yellow" />,
+    category: "Maintainability",
+    usage: "Typed project data, component props, and safer frontend contracts.",
+    evidence: [
+      "Models project content with explicit shared types.",
+      "Keeps portfolio data predictable as sections evolve.",
+      "Improves reviewability by making expected data shapes visible.",
+    ],
+    icon: Cpu,
+    accent: "text-rbr-yellow",
   },
   {
-    name: "Styled Components / SCSS",
-    level: 98,
-    icon: <Layers className="text-rbr-yellow" />,
+    name: "Styling Systems",
+    category: "UI implementation",
+    usage: "Tailwind CSS, styled-components, SCSS, and responsive layouts.",
+    evidence: [
+      "Translates visual direction into reusable, responsive UI sections.",
+      "Maintains high-contrast dark portfolio styling across breakpoints.",
+      "Uses existing styling conventions instead of adding new UI libraries.",
+    ],
+    icon: Layers,
+    accent: "text-rbr-yellow",
   },
   {
-    name: "Tailwind CSS",
-    level: 70,
-    status: "學習中",
-    icon: <Layers className="text-rbr-yellow" />,
+    name: "API Integration",
+    category: "Product workflow",
+    usage: "Weather data, backend API flows, and Supabase-backed app work.",
+    evidence: [
+      "Connects frontend screens to real API-driven project examples.",
+      "Handles user-facing loading, empty, and error states where needed.",
+      "Keeps data integration scoped to the target feature flow.",
+    ],
+    icon: Activity,
+    accent: "text-rbr-red",
   },
   {
-    name: "Performance Optimization",
-    level: 92,
-    icon: <Activity className="text-rbr-red" />,
+    name: "Testing / Validation",
+    category: "Quality signal",
+    usage: "Lint, build checks, focused UI verification, and reviewable diffs.",
+    evidence: [
+      "Runs repository checks before publishing implementation PRs.",
+      "Uses scoped verification instead of broad, unrelated rewrites.",
+      "Keeps changes small enough for practical code review.",
+    ],
+    icon: ShieldCheck,
+    accent: "text-rbr-red",
   },
   {
-    name: "System Architecture",
-    level: 85,
-    icon: <BarChart3 className="text-rbr-red" />,
+    name: "Frontend Architecture",
+    category: "System thinking",
+    usage: "Feature boundaries, data modules, and page-level composition.",
+    evidence: [
+      "Separates page sections, data, and shared types where useful.",
+      "Avoids speculative abstractions until they reduce real complexity.",
+      "Prioritizes readable structure for future maintenance.",
+    ],
+    icon: BarChart3,
+    accent: "text-rbr-red",
   },
+];
+
+const interviewSignals = [
+  "Project-backed claims instead of subjective scores",
+  "Evidence tied to portfolio, SaaS, API, UI, and validation work",
+  "Readable cards for recruiter screening and technical interviews",
 ];
 
 export default function PerformanceDashboard() {
   return (
     <section
       id="performance"
-      className="py-24 px-4 bg-rbr-navy border-t border-white/5"
+      className="relative bg-rbr-navy border-t border-white/5 px-4 py-24"
     >
-      <div className="max-w-6xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6">
+      <div className="mx-auto max-w-6xl">
+        <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
-            <span className="text-rbr-red font-mono font-bold tracking-tighter">
-              SKILLS // 技術能力
+            <span className="font-mono text-sm font-bold text-rbr-red">
+              SKILLS // INTERVIEW EVIDENCE
             </span>
-            <h2 className="text-4xl font-black mt-2">核心前端能力</h2>
+            <h2 className="mt-2 text-4xl font-black text-white">
+              Skills Proven By Project Work
+            </h2>
           </div>
-          <div className="text-left md:text-right font-mono text-sm text-gray-500">
-            專注方向：<span className="text-green-500">前端開發</span>
-            <br />
-            工作方式：重視可維護性
-          </div>
+          <p className="max-w-xl text-left font-mono text-sm text-gray-400 md:text-right">
+            Ability is shown through shipped sections, typed data, API flows,
+            validation habits, and maintainable implementation choices.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {skills.map((skill, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
-              viewport={{ once: true }}
-              className="bg-white/5 border border-white/10 p-6 rounded-lg group hover:border-rbr-yellow/50 hover:bg-white/10 transition-all cursor-crosshair"
-            >
-              <div className="flex justify-between items-start mb-4">
-                <div className="p-3 bg-rbr-navy rounded-sm border border-white/10 group-hover:scale-110 transition-transform">
-                  {skill.icon}
-                </div>
-                <div className="text-right">
-                  <div className="text-xs font-mono text-gray-500">熟悉度</div>
-                  <div className="text-2xl font-black text-rbr-yellow italic">
-                    {skill.level}%
+        <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          {skills.map((skill, index) => {
+            const SkillIcon = skill.icon;
+
+            return (
+              <motion.article
+                key={skill.name}
+                initial={{ opacity: 0, y: 18 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08 }}
+                viewport={{ once: true }}
+                className="group flex min-h-[22rem] flex-col rounded-lg border border-white/10 bg-white/5 p-6 transition-all hover:border-rbr-yellow/50 hover:bg-white/10"
+              >
+                <div className="mb-6 flex items-start justify-between gap-4">
+                  <div className="rounded-sm border border-white/10 bg-rbr-navy p-3 transition-transform group-hover:scale-105">
+                    <SkillIcon className={skill.accent} aria-hidden="true" />
                   </div>
+                  <span className="rounded-full border border-white/10 bg-black/20 px-3 py-1 text-right font-mono text-xs font-bold uppercase text-gray-300">
+                    {skill.category}
+                  </span>
                 </div>
-              </div>
 
-              <div className="mb-2 flex justify-between items-center text-xs font-bold uppercase tracking-widest text-gray-400">
-                <span>{skill.name}</span>
-                <span>{skill.status ?? "可應用"}</span>
-              </div>
+                <div className="mb-5">
+                  <h3 className="text-xl font-black uppercase italic text-white">
+                    {skill.name}
+                  </h3>
+                  <p className="mt-3 text-sm leading-6 text-gray-300">
+                    {skill.usage}
+                  </p>
+                </div>
 
-              <div className="h-2 bg-rbr-navy border border-white/10 rounded-full overflow-hidden">
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: `${skill.level}%` }}
-                  transition={{ duration: 1.5, ease: "easeOut" }}
-                  viewport={{ once: true }}
-                  className="h-full bg-gradient-to-r from-rbr-red to-rbr-yellow"
-                />
-              </div>
-            </motion.div>
-          ))}
+                <ul className="mt-auto space-y-3">
+                  {skill.evidence.map((item) => (
+                    <li
+                      key={item}
+                      className="flex gap-3 text-sm leading-6 text-gray-200"
+                    >
+                      <span
+                        className="mt-2 h-2 w-2 shrink-0 rounded-full bg-rbr-yellow"
+                        aria-hidden="true"
+                      />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </motion.article>
+            );
+          })}
 
-          {/* Large Dashboard Metric */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+          <motion.aside
+            initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
-            className="lg:col-span-2 bg-rbr-red p-8 rounded-lg flex flex-col justify-between overflow-hidden relative"
+            className="relative overflow-hidden rounded-lg bg-rbr-red p-8 text-white md:col-span-2 lg:col-span-3"
           >
-            <div className="relative z-10 text-white">
-              <h3 className="text-2xl font-black mb-2 uppercase italic">
-                以可維護性與使用體驗為核心
+            <div className="relative z-10 max-w-3xl">
+              <span className="font-mono text-sm font-bold uppercase text-white/75">
+                Recruiter-ready signal
+              </span>
+              <h3 className="mt-3 text-2xl font-black uppercase italic md:text-3xl">
+                Skills are framed by evidence, not percentage scores.
               </h3>
-              <p className="text-white/80 max-w-md font-medium">
-                重視元件結構、資料流與程式碼可讀性，讓介面不只完成需求，也能支撐後續維護與迭代。
-              </p>
-            </div>
-            <div className="mt-8 flex items-baseline gap-2 relative z-10 text-white">
-              <span className="text-6xl font-black italic tracking-tighter">
-                100%
-              </span>
-              <span className="text-sm font-bold uppercase">
-                持續學習與改善
-              </span>
+              <div className="mt-6 grid gap-3 md:grid-cols-3">
+                {interviewSignals.map((signal) => (
+                  <div
+                    key={signal}
+                    className="rounded-md border border-white/20 bg-black/15 p-4 text-sm font-semibold leading-6 text-white/90"
+                  >
+                    {signal}
+                  </div>
+                ))}
+              </div>
             </div>
 
-            {/* Background Accent */}
-            <BarChart3 className="absolute -right-10 -bottom-10 w-64 h-64 text-black/10 -rotate-12" />
-          </motion.div>
+            <BarChart3
+              className="absolute -bottom-12 -right-8 h-56 w-56 -rotate-12 text-black/10"
+              aria-hidden="true"
+            />
+          </motion.aside>
         </div>
       </div>
     </section>
