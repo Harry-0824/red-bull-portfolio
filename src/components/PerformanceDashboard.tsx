@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { BarChart3 } from "lucide-react";
-import { interviewSignals, skills } from "@/data/skills";
+import { interviewSignals, skills } from "../data/skills";
 
 export default function PerformanceDashboard() {
   return (

@@ -2,7 +2,7 @@
 
 import { motion, useScroll, useSpring } from "framer-motion";
 import { useRef } from "react";
-import { milestones } from "@/data/milestones";
+import { milestones } from "../data/milestones";
 
 const RaceHistory = () => {
   const containerRef = useRef<HTMLDivElement>(null);
