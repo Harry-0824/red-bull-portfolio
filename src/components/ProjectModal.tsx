@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useId, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ExternalLink, Github, Image as ImageIcon } from "lucide-react";
 import Image from "next/image";
@@ -43,6 +43,40 @@ function ImageWithFallback({ src, alt }: ImageWithFallbackProps) {
 }
 
 const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
+  const dialogTitleId = useId();
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const previousBodyOverflowRef = useRef<string>("");
+  const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    previouslyFocusedElementRef.current =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
+
+    previousBodyOverflowRef.current = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+
+    dialogRef.current?.focus();
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        event.preventDefault();
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      document.body.style.overflow = previousBodyOverflowRef.current;
+      previouslyFocusedElementRef.current?.focus();
+    };
+  }, [isOpen, onClose]);
+
   if (!project) return null;
 
   return (
@@ -61,16 +95,25 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            ref={dialogRef}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby={dialogTitleId}
+            tabIndex={-1}
             className="relative w-full max-w-5xl bg-[#080808] border border-white/10 rounded-sm overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] motion-blur-in"
           >
             <div className="p-6 border-b border-white/5 flex justify-between items-center bg-white/5">
               <div>
-                <h2 className="text-3xl font-black italic tracking-tighter text-white uppercase">
+                <h2
+                  id={dialogTitleId}
+                  className="text-3xl font-black italic tracking-tighter text-white uppercase"
+                >
                   {project.title}
                 </h2>
               </div>
               <button
                 onClick={onClose}
+                aria-label="關閉專案詳細資訊視窗"
                 className="p-2 hover:bg-white/5 rounded-full transition-colors text-gray-400 hover:text-white"
               >
                 <X size={24} />

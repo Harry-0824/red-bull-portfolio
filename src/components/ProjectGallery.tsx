@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { type KeyboardEvent, useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import ProjectModal from "./ProjectModal";
@@ -16,6 +16,18 @@ export default function ProjectGallery() {
     setIsModalOpen(true);
   };
 
+  const handleProjectKeyDown = (
+    event: KeyboardEvent<HTMLDivElement>,
+    project: Project,
+  ) => {
+    if (event.currentTarget !== event.target) return;
+
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      handleProjectClick(project);
+    }
+  };
+
   return (
     <section id="projects" className="py-24 px-4 bg-rbr-navy">
       <div className="max-w-6xl mx-auto">
@@ -24,7 +36,8 @@ export default function ProjectGallery() {
             精選專案作品
           </h2>
           <p className="text-gray-400 mt-4 max-w-xl font-bold uppercase tracking-widest text-xs">
-            以 React / Next.js 前端實作為主，整理需求拆解、介面互動與資料串接的實作案例。
+            以 React / Next.js
+            前端實作為主，整理需求拆解、介面互動與資料串接的實作案例。
           </p>
         </div>
 
@@ -37,6 +50,10 @@ export default function ProjectGallery() {
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
               onClick={() => handleProjectClick(project)}
+              onKeyDown={(event) => handleProjectKeyDown(event, project)}
+              role="button"
+              tabIndex={0}
+              aria-label={`開啟專案詳細資訊：${project.title}`}
               className="relative group cursor-pointer"
             >
               {/* Carbon Fiber Background Effect */}
