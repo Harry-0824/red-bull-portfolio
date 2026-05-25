@@ -13,72 +13,72 @@ import {
 const skills = [
   {
     name: "React / Next.js",
-    category: "Core frontend stack",
-    usage: "Portfolio pages, App Router layout, and reusable page sections.",
+    category: "核心前端技術",
+    usage: "用於作品集頁面、App Router 版面與可重用頁面區塊。",
     evidence: [
-      "Builds component-based portfolio sections with clear ownership.",
-      "Uses Next.js App Router patterns for page composition and deployment.",
-      "Connects project storytelling with maintainable React structure.",
+      "以元件化方式拆分作品集區塊，讓每個區塊責任清楚。",
+      "使用 Next.js App Router 組合頁面結構與部署流程。",
+      "把專案敘事和可維護的 React 結構連在一起。",
     ],
     icon: Code2,
     accent: "text-rbr-yellow",
   },
   {
     name: "TypeScript",
-    category: "Maintainability",
-    usage: "Typed project data, component props, and safer frontend contracts.",
+    category: "可維護性",
+    usage: "用於型別化專案資料、元件 props 與前端資料契約。",
     evidence: [
-      "Models project content with explicit shared types.",
-      "Keeps portfolio data predictable as sections evolve.",
-      "Improves reviewability by making expected data shapes visible.",
+      "用明確型別描述專案內容與共用資料結構。",
+      "讓作品集資料在區塊調整時仍維持可預測。",
+      "把資料形狀寫清楚，降低 review 與維護成本。",
     ],
     icon: Cpu,
     accent: "text-rbr-yellow",
   },
   {
-    name: "Styling Systems",
-    category: "UI implementation",
-    usage: "Tailwind CSS, styled-components, SCSS, and responsive layouts.",
+    name: "樣式系統",
+    category: "UI 實作",
+    usage: "使用 Tailwind CSS、styled-components、SCSS 與響應式版面。",
     evidence: [
-      "Translates visual direction into reusable, responsive UI sections.",
-      "Maintains high-contrast dark portfolio styling across breakpoints.",
-      "Uses existing styling conventions instead of adding new UI libraries.",
+      "把視覺方向轉成可重用、可響應的 UI 區塊。",
+      "在不同斷點維持深色、高對比的作品集風格。",
+      "優先沿用既有樣式做法，不額外加入 UI library。",
     ],
     icon: Layers,
     accent: "text-rbr-yellow",
   },
   {
-    name: "API Integration",
-    category: "Product workflow",
-    usage: "Weather data, backend API flows, and Supabase-backed app work.",
+    name: "API 整合",
+    category: "產品流程",
+    usage: "用於天氣資料、後端 API 流程與 Supabase 資料串接。",
     evidence: [
-      "Connects frontend screens to real API-driven project examples.",
-      "Handles user-facing loading, empty, and error states where needed.",
-      "Keeps data integration scoped to the target feature flow.",
+      "把前端畫面接到真實 API 驅動的專案案例。",
+      "在需要時處理使用者看得到的 loading、empty、error state。",
+      "讓資料整合集中在目標功能流程，避免擴散到無關區塊。",
     ],
     icon: Activity,
     accent: "text-rbr-red",
   },
   {
-    name: "Testing / Validation",
-    category: "Quality signal",
-    usage: "Lint, build checks, focused UI verification, and reviewable diffs.",
+    name: "測試 / 驗證",
+    category: "品質訊號",
+    usage: "使用 lint、build、聚焦 UI 驗證與可 review 的 diff。",
     evidence: [
-      "Runs repository checks before publishing implementation PRs.",
-      "Uses scoped verification instead of broad, unrelated rewrites.",
-      "Keeps changes small enough for practical code review.",
+      "在送出實作 PR 前執行 repo 檢查。",
+      "用聚焦驗證取代大範圍、無關的重寫。",
+      "把變更維持在 code review 能有效檢查的大小。",
     ],
     icon: ShieldCheck,
     accent: "text-rbr-red",
   },
   {
-    name: "Frontend Architecture",
-    category: "System thinking",
-    usage: "Feature boundaries, data modules, and page-level composition.",
+    name: "前端架構",
+    category: "系統思維",
+    usage: "用於功能邊界、資料模組與頁面層級組合。",
     evidence: [
-      "Separates page sections, data, and shared types where useful.",
-      "Avoids speculative abstractions until they reduce real complexity.",
-      "Prioritizes readable structure for future maintenance.",
+      "在有實際幫助時拆分頁面區塊、資料與共用型別。",
+      "避免沒有必要的抽象，等它能降低複雜度時才加入。",
+      "優先維持清楚結構，方便後續維護與交接。",
     ],
     icon: BarChart3,
     accent: "text-rbr-red",
@@ -86,9 +86,9 @@ const skills = [
 ];
 
 const interviewSignals = [
-  "Project-backed claims instead of subjective scores",
-  "Evidence tied to portfolio, SaaS, API, UI, and validation work",
-  "Readable cards for recruiter screening and technical interviews",
+  "用專案證據取代主觀分數",
+  "證據連到作品集、SaaS、API、UI 與驗證工作",
+  "卡片內容可支援履歷初篩與技術面試討論",
 ];
 
 export default function PerformanceDashboard() {
@@ -101,15 +101,15 @@ export default function PerformanceDashboard() {
         <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div>
             <span className="font-mono text-sm font-bold text-rbr-red">
-              SKILLS // INTERVIEW EVIDENCE
+              技能 // 面試證據
             </span>
             <h2 className="mt-2 text-4xl font-black text-white">
-              Skills Proven By Project Work
+              用專案成果證明技能
             </h2>
           </div>
           <p className="max-w-xl text-left font-mono text-sm text-gray-400 md:text-right">
-            Ability is shown through shipped sections, typed data, API flows,
-            validation habits, and maintainable implementation choices.
+            能力不靠百分比說明，而是透過已完成的頁面區塊、型別化資料、
+            API 流程、驗證習慣與可維護的實作選擇來呈現。
           </p>
         </div>
 
@@ -170,10 +170,10 @@ export default function PerformanceDashboard() {
           >
             <div className="relative z-10 max-w-3xl">
               <span className="font-mono text-sm font-bold uppercase text-white/75">
-                Recruiter-ready signal
+                求職面試訊號
               </span>
               <h3 className="mt-3 text-2xl font-black uppercase italic md:text-3xl">
-                Skills are framed by evidence, not percentage scores.
+                技能呈現改用證據脈絡，不再依賴百分比分數。
               </h3>
               <div className="mt-6 grid gap-3 md:grid-cols-3">
                 {interviewSignals.map((signal) => (
