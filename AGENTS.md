@@ -13,11 +13,18 @@ AI coding agents must follow these rules when working in this repository.
 
 - Work in small, issue-driven tasks.
 - Read the issue or request before changing files.
+- Follow the currently assigned GitHub Issue only; do not infer or switch scope.
+- Start implementation from the Issue `Suggested Files` before exploring elsewhere.
 - Keep the implementation scope narrow and avoid unrelated cleanup.
+- Keep diffs minimal and portfolio-focused for the current issue scope.
+- Preserve the existing Next.js + React + TypeScript + Tailwind CSS structure unless the issue explicitly asks to change it.
 - Do not modify application code for documentation-only tasks.
 - Do not modify `package.json` or `package-lock.json` unless the issue explicitly requires dependency or script changes.
+- Do not add dependencies unless explicitly required by the issue.
+- Do not change Netlify or deployment configuration unless explicitly requested by the issue.
 - Do not create extra markdown files unless explicitly requested.
 - Do not add `WORKFLOW.md`, `TODO.md`, `PROJECT_BRIEF.md`, `ARCHITECTURE.md`, `NOTES.md`, or similar side documents unless the issue specifically asks for them.
+- Never commit secrets or local environment files (for example `.env*`, tokens, API keys, credentials, or machine-local config).
 - Prefer existing project structure, naming, and styling conventions.
 - Use concise commits and clear pull request descriptions.
 
@@ -101,7 +108,8 @@ Before opening a pull request:
 - Confirm the diff only includes files in scope.
 - For documentation-only changes, confirm no application code changed.
 - Run the most relevant npm check when the change could affect build or lint behavior.
-- For docs-only changes, a manual file review is acceptable when no code paths changed.
+- For docs-only changes, a manual file review/diff check is acceptable when no code paths changed.
+- When the issue marks the task as docs-only, no build/test command is required unless the issue explicitly asks for one.
 
 ## Pull Requests
 
