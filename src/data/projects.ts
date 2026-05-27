@@ -31,30 +31,23 @@ export const projects: Project[] = [
     tags: ["React", "TypeScript", "Supabase", "SaaS"],
   },
   {
-    title: "互動式天氣預報 App",
-    category: "API 串接與互動介面",
+    title: "AI Issue Scope Guard",
+    category: "AI-Assisted Development Workflow",
     description:
-      "以 React 串接 OpenWeather API，依使用者輸入呈現即時天氣資訊與對應的動態介面狀態。",
+      "A Vue 3 + TypeScript checker that verifies pull request scope against GitHub Issue specs to prevent out-of-scope AI coding changes.",
     objective:
-      "練習非同步資料處理、API 回應狀態管理與 UI 回饋設計，讓使用者能快速查詢並理解天氣結果。",
-    stack: [
-      "React",
-      "Rest API",
-      "Framer Motion",
-      "OpenWeather",
-      "Styled Components",
-    ],
+      "Demonstrate spec-driven development, issue governance, and practical guardrails for AI pair-programming workflows.",
+    stack: ["Vue 3", "TypeScript", "Vite", "Pinia", "Vitest", "GitHub API"],
     metrics: [
-      { label: "API 串接", value: "OpenWeather" },
-      { label: "UI 重點", value: "即時天氣查詢" },
-      { label: "互動呈現", value: "Framer Motion" },
+      { label: "Core Focus", value: "Issue Scope Validation" },
+      { label: "Workflow", value: "Spec-Driven Development" },
+      { label: "Risk Control", value: "AI Coding Guardrails" },
     ],
-    image: "/projects/Weather-App.png",
+    image: "/projects/AI Issue Scope Guard.png",
     links: {
-      live: "https://bejewelled-scone-ae225c.netlify.app/",
-      github: "https://github.com/Harry-0824/weather-app",
+      github: "https://github.com/Harry-0824/ai-issue-scope-guard",
     },
-    tags: ["React", "Rest API", "Framer Motion"],
+    tags: ["Vue 3", "TypeScript", "GitHub API", "Spec-Driven Development"],
   },
   {
     title: "質感高效待辦清單",
