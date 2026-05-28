@@ -1,18 +1,24 @@
 # Apex Flow | 前端工程師作品集
 
-## Overview
+## 專案概述
 
-Apex Flow is a personal frontend engineer portfolio built to present selected projects, technical skills, and frontend implementation experience in a polished single-page website.
+Apex Flow 是一個前端工程師個人作品集網站，用來展示精選專案、技術能力與實作經驗，並以單頁式架構提供清楚且完整的瀏覽體驗。
 
-The site focuses on clear project storytelling, responsive portfolio presentation, and maintainable frontend code using the Next.js App Router stack.
+本專案採用 Next.js App Router，重點放在：
 
-## Live Demo
+- 專案敘事清楚
+- 版面具備響應式設計
+- 程式結構可維護
 
-The project is intended to be deployed on Netlify, and the repository includes Netlify configuration.
+## 線上展示
 
-The production URL is not currently recorded in this repository. Once the live site URL is confirmed, add it here.
+本專案預計部署於 Netlify，倉庫內已包含 Netlify 相關設定。
 
-## Tech Stack
+正式網址：
+
+- https://apex-flow-portfolio.netlify.app/
+
+## 技術棧
 
 - Next.js
 - React
@@ -24,17 +30,17 @@ The production URL is not currently recorded in this repository. Once the live s
 - Netlify
 - npm
 
-## Features
+## 主要功能
 
-- Hero section for the Apex Flow portfolio identity.
-- Performance-style dashboard section for frontend skill positioning.
-- Race history section for career and project narrative.
-- Project gallery for selected portfolio projects.
-- Project detail modal for deeper project context.
-- Contact section with GitHub profile access.
-- Responsive layout designed for portfolio browsing.
+- Hero 區塊：呈現 Apex Flow 作品集識別。
+- Dashboard 風格區塊：展示前端技能定位與強項。
+- Career / Project 敘事區塊：整理經歷與專案脈絡。
+- Project Gallery：展示精選作品。
+- Project Detail Modal：提供專案的延伸資訊。
+- Contact 區塊：提供 GitHub 等聯絡入口。
+- 響應式版面：支援常見桌面與行動裝置寬度。
 
-## Project Structure
+## 專案結構
 
 ```text
 red-bull-portfolio/
@@ -53,9 +59,9 @@ red-bull-portfolio/
 +-- README.md
 ```
 
-## Getting Started
+## 快速開始
 
-Clone the repository and install dependencies with npm:
+先複製專案並安裝依賴：
 
 ```bash
 git clone https://github.com/Harry-0824/red-bull-portfolio.git
@@ -63,43 +69,41 @@ cd red-bull-portfolio
 npm install
 ```
 
-Start the local development server:
+啟動本機開發伺服器：
 
 ```bash
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+開啟瀏覽器進入 [http://localhost:3000](http://localhost:3000)。
 
-## Available Scripts
+## 可用指令
 
 ```bash
 npm run dev
 ```
 
-Starts the local Next.js development server.
+啟動 Next.js 本機開發伺服器。
 
 ```bash
 npm run build
 ```
 
-Creates a production build.
+建立正式環境建置輸出。
 
 ```bash
 npm run lint
 ```
 
-Runs ESLint checks.
+執行 ESLint 程式碼檢查。
 
 ```bash
 npm run start
 ```
 
-Starts the production server after a successful build.
+在建置完成後啟動正式模式伺服器。
 
-## Notes
+## 備註
 
-- This is a documentation-only README update for the portfolio repository.
-- The README uses npm commands only.
-- No screenshots are included in this version.
-- The confirmed production URL should be added when it is available.
+- 本專案使用 npm 作為套件管理與指令執行工具。
+- README 目前未附上畫面截圖。
