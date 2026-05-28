@@ -171,7 +171,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                 </section>
 
                 {project.metrics.length > 0 && (
-                  <section>
+                  <section className="modal-card__metrics-section">
                     <h4 className="modal-card__section-title text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
                       <span className="w-4 h-[1px] bg-rbr-red" /> 成果指標
                     </h4>

@@ -147,6 +147,10 @@ body {
     display: none;
   }
 
+  .modal-card__metrics-section {
+    display: none;
+  }
+
   .modal-card__stack {
     gap: 0.1875rem;
     flex-wrap: nowrap;
