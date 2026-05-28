@@ -59,7 +59,7 @@ export const projects: Project[] = [
     category: "個人作品集",
     description:
       "目標：以高辨識度版面清楚呈現前端作品。主要職責：區塊設計落地、專案卡片與互動流程實作、資料驅動內容維護。前端價值：兼顧視覺層次、互動體驗與內容可維護性。",
-    objective: "讓面試官可快速理解專案重點、責任範圍與技術能力。",
+    objective: "讓訪客可快速理解專案重點、責任範圍與技術能力。",
     stack: [
       "Next.js",
       "React",
@@ -69,7 +69,7 @@ export const projects: Project[] = [
       "Netlify",
     ],
     metrics: [
-      { label: "主要用途", value: "面試作品集" },
+      { label: "主要用途", value: "個人作品展示" },
       { label: "前端重點", value: "資訊呈現與互動體驗" },
       { label: "部署平台", value: "Netlify" },
     ],
@@ -130,7 +130,7 @@ export const projects: Project[] = [
     ],
     image: "/projects/AI Issue Scope Guard.png",
     links: {
-      live: "https://app.netlify.com/projects/monumental-fudge-3c2f38/overview",
+      live: "https://monumental-fudge-3c2f38.netlify.app/",
       github: "https://github.com/Harry-0824/ai-issue-scope-guard",
     },
     tags: ["Vue 3", "TypeScript", "GitHub API", "規格導向開發"],
