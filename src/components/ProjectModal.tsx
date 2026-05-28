@@ -138,10 +138,10 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
 
               <div className="modal-card__content p-4 sm:p-8 space-y-4 sm:space-y-8 lg:max-h-[70vh] lg:overflow-y-auto custom-scrollbar min-h-0">
                 <section>
-                  <h4 className="text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
+                  <h4 className="modal-card__section-title text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
                     <span className="w-4 h-[1px] bg-rbr-red" /> 專案目標
                   </h4>
-                  <p className="text-gray-300 text-sm leading-relaxed font-medium">
+                  <p className="modal-card__objective text-gray-300 text-sm leading-relaxed font-medium">
                     {project.objective}
                   </p>
                 </section>
@@ -155,7 +155,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                 )}
 
                 <section>
-                  <h4 className="text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
+                  <h4 className="modal-card__section-title text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
                     <span className="w-4 h-[1px] bg-rbr-red" /> 技術堆疊
                   </h4>
                   <div className="modal-card__stack flex flex-wrap gap-1.5 sm:gap-2">
@@ -172,7 +172,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
 
                 {project.metrics.length > 0 && (
                   <section>
-                    <h4 className="text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
+                    <h4 className="modal-card__section-title text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
                       <span className="w-4 h-[1px] bg-rbr-red" /> 成果指標
                     </h4>
                     <div className="modal-card__metrics grid grid-cols-2 gap-2 sm:gap-4">
@@ -181,10 +181,10 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                           key={metric.label}
                           className="bg-white/5 p-3 sm:p-4 rounded-sm border border-white/5 hover:border-rbr-yellow/30 transition-all"
                         >
-                          <span className="block text-[10px] font-mono text-gray-500 uppercase mb-1">
+                          <span className="modal-card__metric-label block text-[10px] font-mono text-gray-500 uppercase mb-1">
                             {metric.label}
                           </span>
-                          <span className="text-lg sm:text-xl font-black italic tracking-tighter text-rbr-yellow">
+                          <span className="modal-card__metric-value text-lg sm:text-xl font-black italic tracking-tighter text-rbr-yellow">
                             {metric.value}
                           </span>
                         </div>
@@ -202,20 +202,20 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                         href={project.links.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 bg-rbr-red hover:bg-red-700 text-white font-black italic uppercase text-xs py-3 sm:py-4 rounded-sm flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(224,30,34,0.3)]"
+                        className="modal-card__primary-link flex-1 bg-rbr-red hover:bg-red-700 text-white font-black italic uppercase text-xs py-3 sm:py-4 rounded-sm flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(224,30,34,0.3)]"
                       >
                         查看網站 <ExternalLink size={14} />
                       </a>
                     )}
 
                     {(project.links.github || project.links.githubBackend) && (
-                      <div className="flex-1 flex flex-col gap-2">
+                      <div className="modal-card__repo-links flex-1 flex flex-col gap-2">
                         {project.links.github && (
                           <a
                             href={project.links.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full border border-white/20 hover:border-white/40 text-white font-black italic uppercase text-xs py-2 rounded-sm flex items-center justify-center gap-2 transition-all"
+                            className="modal-card__repo-link w-full border border-white/20 hover:border-white/40 text-white font-black italic uppercase text-xs py-2 rounded-sm flex items-center justify-center gap-2 transition-all"
                           >
                             {project.links.githubBackend
                               ? "前端原始碼"
@@ -229,7 +229,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                             href={project.links.githubBackend}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="w-full border border-white/20 hover:border-white/40 text-white font-black italic uppercase text-xs py-2 rounded-sm flex items-center justify-center gap-2 transition-all"
+                            className="modal-card__repo-link w-full border border-white/20 hover:border-white/40 text-white font-black italic uppercase text-xs py-2 rounded-sm flex items-center justify-center gap-2 transition-all"
                           >
                             後端原始碼 <Github size={14} />
                           </a>
