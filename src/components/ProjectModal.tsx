@@ -82,7 +82,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4">
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -100,13 +100,13 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
             aria-modal="true"
             aria-labelledby={dialogTitleId}
             tabIndex={-1}
-            className="relative w-full max-w-5xl bg-[#080808] border border-white/10 rounded-sm overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] motion-blur-in"
+            className="modal-card relative mx-auto w-full max-w-5xl h-[calc(100dvh-1rem)] sm:h-auto sm:max-h-[calc(100dvh-2rem)] bg-[#080808] border border-white/10 rounded-sm overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] motion-blur-in flex flex-col"
           >
-            <div className="p-6 border-b border-white/5 flex justify-between items-center bg-white/5">
-              <div>
+            <div className="modal-card__header p-4 sm:p-6 border-b border-white/5 flex justify-between items-center bg-white/5">
+              <div className="min-w-0 pr-3">
                 <h2
                   id={dialogTitleId}
-                  className="text-3xl font-black italic tracking-tighter text-white uppercase"
+                  className="modal-card__title text-2xl sm:text-3xl font-black italic tracking-tighter text-white uppercase leading-tight"
                 >
                   {project.title}
                 </h2>
@@ -120,8 +120,8 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
               </button>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2">
-              <div className="relative aspect-video lg:aspect-auto bg-rbr-navy overflow-hidden flex items-center justify-center">
+            <div className="grid grid-cols-1 lg:grid-cols-2 min-h-0 flex-1">
+              <div className="modal-card__image relative h-40 sm:h-52 lg:h-auto lg:aspect-auto bg-rbr-navy overflow-hidden flex items-center justify-center">
                 <div className="absolute inset-0 bg-grid-glowing opacity-20" />
                 {project.image ? (
                   <ImageWithFallback
@@ -136,7 +136,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                 )}
               </div>
 
-              <div className="p-8 space-y-8 max-h-[70vh] overflow-y-auto custom-scrollbar">
+              <div className="modal-card__content p-4 sm:p-8 space-y-4 sm:space-y-8 lg:max-h-[70vh] lg:overflow-y-auto custom-scrollbar min-h-0">
                 <section>
                   <h4 className="text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
                     <span className="w-4 h-[1px] bg-rbr-red" /> 專案目標
@@ -158,11 +158,11 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                   <h4 className="text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
                     <span className="w-4 h-[1px] bg-rbr-red" /> 技術堆疊
                   </h4>
-                  <div className="flex flex-wrap gap-2">
+                  <div className="modal-card__stack flex flex-wrap gap-1.5 sm:gap-2">
                     {project.stack.map((tech) => (
                       <span
                         key={tech}
-                        className="glow-pill px-3 py-1 bg-rbr-red/5 rounded-full text-[10px] font-bold text-white uppercase tracking-wider"
+                        className="glow-pill px-2.5 sm:px-3 py-1 bg-rbr-red/5 rounded-full text-[10px] font-bold text-white uppercase tracking-wider"
                       >
                         {tech}
                       </span>
@@ -175,16 +175,16 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                     <h4 className="text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
                       <span className="w-4 h-[1px] bg-rbr-red" /> 成果指標
                     </h4>
-                    <div className="grid grid-cols-2 gap-4">
+                    <div className="modal-card__metrics grid grid-cols-2 gap-2 sm:gap-4">
                       {project.metrics.map((metric) => (
                         <div
                           key={metric.label}
-                          className="bg-white/5 p-4 rounded-sm border border-white/5 hover:border-rbr-yellow/30 transition-all"
+                          className="bg-white/5 p-3 sm:p-4 rounded-sm border border-white/5 hover:border-rbr-yellow/30 transition-all"
                         >
                           <span className="block text-[10px] font-mono text-gray-500 uppercase mb-1">
                             {metric.label}
                           </span>
-                          <span className="text-xl font-black italic tracking-tighter text-rbr-yellow">
+                          <span className="text-lg sm:text-xl font-black italic tracking-tighter text-rbr-yellow">
                             {metric.value}
                           </span>
                         </div>
@@ -196,13 +196,13 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                 {(project.links.live ||
                   project.links.github ||
                   project.links.githubBackend) && (
-                  <div className="pt-6 flex flex-col sm:flex-row gap-4 border-t border-white/5">
+                  <div className="modal-card__actions pt-4 sm:pt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 border-t border-white/5">
                     {project.links.live && (
                       <a
                         href={project.links.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex-1 bg-rbr-red hover:bg-red-700 text-white font-black italic uppercase text-xs py-4 rounded-sm flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(224,30,34,0.3)]"
+                        className="flex-1 bg-rbr-red hover:bg-red-700 text-white font-black italic uppercase text-xs py-3 sm:py-4 rounded-sm flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(224,30,34,0.3)]"
                       >
                         查看網站 <ExternalLink size={14} />
                       </a>
