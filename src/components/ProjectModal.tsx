@@ -147,7 +147,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                 </section>
 
                 {project.readinessNote && (
-                  <div className="mb-6">
+                  <div className="modal-card__readiness mb-6">
                     <p className="text-xs text-gray-400 font-mono leading-relaxed">
                       {project.readinessNote}
                     </p>
