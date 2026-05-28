@@ -102,10 +102,10 @@ body {
   }
 
   .modal-card {
-    height: calc(
+    height: auto;
+    max-height: calc(
       100svh - env(safe-area-inset-top) - env(safe-area-inset-bottom) - 0.25rem
     );
-    max-height: 100%;
     margin-top: env(safe-area-inset-top);
   }
 
@@ -132,6 +132,8 @@ body {
     padding: 0.4375rem 0.5625rem;
     padding-bottom: max(0.5rem, env(safe-area-inset-bottom));
     row-gap: 0.4375rem;
+    overflow-y: auto;
+    overscroll-behavior: contain;
   }
 
   .modal-card__section-title {
