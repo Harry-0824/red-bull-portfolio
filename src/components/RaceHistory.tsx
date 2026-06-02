@@ -6,11 +6,13 @@ import { milestones } from "@/data/milestones";
 
 const RaceHistory = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  // 追蹤時間軸區塊在視窗中的捲動進度，用來驅動中線填滿動畫。
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start end", "end end"],
   });
 
+  // 用 spring 平滑 scrollYProgress，避免線條高度隨捲動產生生硬跳動。
   const pathLength = useSpring(scrollYProgress, {
     stiffness: 100,
     damping: 30,
@@ -34,7 +36,7 @@ const RaceHistory = () => {
         </div>
 
         <div className="relative">
-          {/* The Track (Animated Line) */}
+          {/* 桌面版中線代表職涯賽道，scaleY 會隨區塊捲動進度向下延伸。 */}
           <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-[2px] bg-white/5 hidden md:block">
             <motion.div
               className="w-full bg-rbr-red origin-top"
@@ -43,15 +45,16 @@ const RaceHistory = () => {
           </div>
 
           <div className="space-y-12">
+            {/* 每個 milestone 依 alignment 決定左右位置，形成交錯時間軸。 */}
             {milestones.map((milestone, index) => (
               <div
                 key={index}
                 className="relative flex flex-col md:flex-row items-center justify-between group"
               >
-                {/* Node */}
+                {/* 節點只在桌面版顯示，對齊中央賽道並提供 hover 焦點。 */}
                 <div className="absolute left-1/2 -translate-x-1/2 w-4 h-4 bg-rbr-navy border-2 border-rbr-yellow rounded-full z-10 hidden md:block group-hover:shadow-[0_0_15px_#FCD700] transition-shadow duration-300" />
 
-                {/* Card Container */}
+                {/* alignment 會同時影響卡片位置與文字方向，讓資料層控制版面節奏。 */}
                 <div
                   className={`w-full md:w-[45%] ${milestone.alignment === "left" ? "md:text-right" : "md:ml-auto"}`}
                 >
@@ -78,6 +81,7 @@ const RaceHistory = () => {
                     <ul
                       className={`space-y-3 text-sm text-gray-300 font-medium ${milestone.alignment === "left" ? "md:flex md:flex-col md:items-end" : ""}`}
                     >
+                      {/* achievements 逐項渲染，左右兩側用不同斜線位置維持時間軸視覺平衡。 */}
                       {milestone.achievements.map((achievement, aIndex) => (
                         <li key={aIndex} className="flex gap-3">
                           {milestone.alignment === "right" && (

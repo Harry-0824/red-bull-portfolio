@@ -7,6 +7,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 
+// 技能卡片使用資料驅動，讓文字證據、分類與 icon 能在同一處維護。
 export const skills = [
   {
     name: "React / Next.js",
@@ -82,6 +83,7 @@ export const skills = [
   },
 ];
 
+// 這組面試訊號會渲染在技能區塊的紅色總結卡，補足技能與作品證據的連結。
 export const interviewSignals = [
   "用專案證據取代主觀分數",
   "證據連到作品集、SaaS、API、UI 與驗證工作",

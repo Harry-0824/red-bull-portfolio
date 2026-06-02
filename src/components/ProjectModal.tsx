@@ -7,6 +7,7 @@ import Image from "next/image";
 import type { Project } from "@/types/project";
 
 interface ProjectModalProps {
+  // isOpen 控制 AnimatePresence 是否渲染視窗，project 則提供視窗內容。
   isOpen: boolean;
   onClose: () => void;
   project: Project | null;
@@ -18,6 +19,7 @@ interface ImageWithFallbackProps {
 }
 
 function ImageWithFallback({ src, alt }: ImageWithFallbackProps) {
+  // next/image 載入失敗時改顯示占位內容，避免破圖影響作品說明。
   const [error, setError] = useState(false);
 
   if (error) {
@@ -51,6 +53,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
   useEffect(() => {
     if (!isOpen) return;
 
+    // 開啟時記住原本焦點與 body overflow，關閉後復原以維持頁面操作體驗。
     previouslyFocusedElementRef.current =
       document.activeElement instanceof HTMLElement
         ? document.activeElement
@@ -61,6 +64,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
 
     dialogRef.current?.focus();
 
+    // Escape 提供鍵盤關閉路徑，與右上角按鈕及背景點擊維持一致行為。
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
@@ -71,12 +75,14 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
+      // 清理全域事件與 body overflow，避免 Modal 關閉後仍鎖住背景捲動。
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousBodyOverflowRef.current;
       previouslyFocusedElementRef.current?.focus();
     };
   }, [isOpen, onClose]);
 
+  // 沒有作品資料時不渲染 Modal，避免存取 project 欄位造成 runtime error。
   if (!project) return null;
 
   return (
@@ -87,6 +93,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            // 點擊遮罩關閉 Modal；內容卡片不綁 onClick，因此點擊內容不會觸發關閉。
             onClick={onClose}
             className="absolute inset-0 bg-rbr-navy/90 backdrop-blur-sm"
           />
@@ -123,6 +130,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
             <div className="grid grid-cols-1 lg:grid-cols-2 min-h-0 flex-1">
               <div className="modal-card__image relative h-40 sm:h-52 lg:h-auto lg:aspect-auto bg-rbr-navy overflow-hidden flex items-center justify-center">
                 <div className="absolute inset-0 bg-grid-glowing opacity-20" />
+                {/* image 為選填；沒有截圖時顯示一致的暫無圖片狀態。 */}
                 {project.image ? (
                   <ImageWithFallback
                     src={project.image}
@@ -146,6 +154,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                   </p>
                 </section>
 
+                {/* readinessNote 用於補充作品公開程度或目前狀態，只有資料存在時顯示。 */}
                 {project.readinessNote && (
                   <div className="modal-card__readiness mb-6">
                     <p className="text-xs text-gray-400 font-mono leading-relaxed">
@@ -159,6 +168,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                     <span className="w-4 h-[1px] bg-rbr-red" /> 技術堆疊
                   </h4>
                   <div className="modal-card__stack flex flex-wrap gap-1.5 sm:gap-2">
+                    {/* stack 以 pill 呈現，方便快速掃描專案技術組合。 */}
                     {project.stack.map((tech) => (
                       <span
                         key={tech}
@@ -170,6 +180,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                   </div>
                 </section>
 
+                {/* metrics 可能為空；有資料時才顯示成果指標區塊。 */}
                 {project.metrics.length > 0 && (
                   <section className="modal-card__metrics-section">
                     <h4 className="modal-card__section-title text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
@@ -193,6 +204,7 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                   </section>
                 )}
 
+                {/* 依作品提供的 live / github / backend 連結組合出可用操作，避免無效外連。 */}
                 {(project.links.live ||
                   project.links.github ||
                   project.links.githubBackend) && (

@@ -2,6 +2,7 @@
 
 import { ArrowUpRight, Github, Mail } from "lucide-react";
 
+// 聯絡入口集中管理，卡片渲染時共用 label、連結、圖示與外連設定。
 const contactLinks = [
   {
     label: "Email",
@@ -47,12 +48,14 @@ export default function ContactSection() {
 
           <div className="grid gap-4 sm:grid-cols-2">
             {contactLinks.map((link) => {
+              // 每筆聯絡資料帶入自己的 lucide icon，讓資料決定卡片圖示而不是寫死 JSX。
               const Icon = link.icon;
 
               return (
                 <a
                   key={link.label}
                   href={link.href}
+                  // 目前連結皆為外部入口；未來若加入站內履歷頁可用 isExternal 關閉 target/rel。
                   target={link.isExternal ? "_blank" : undefined}
                   rel={link.isExternal ? "noopener noreferrer" : undefined}
                   aria-label={`${link.label}: ${link.value}`}

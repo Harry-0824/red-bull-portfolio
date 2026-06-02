@@ -8,6 +8,7 @@ import { Menu, X } from "lucide-react";
 import { navLinks } from "@/data/navLinks";
 
 const Navbar = () => {
+  // 行動版選單狀態只影響導覽列展開與圖示切換，不保存到 URL 或全域狀態。
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
@@ -28,7 +29,7 @@ const Navbar = () => {
           <span>Apex Flow</span>
         </Link>
 
-        {/* Desktop Menu */}
+        {/* 桌面導覽直接由 navLinks 產生，讓錨點與行動版選單共用同一份資料。 */}
         <div className="hidden md:flex gap-10 lg:gap-14 xl:gap-20">
           {navLinks.map((item) => (
             <Link
@@ -41,7 +42,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        {/* Mobile menu toggle */}
+        {/* 行動版按鈕同步 aria-expanded，讓輔助工具知道選單目前是否展開。 */}
         <div className="md:hidden">
           <button
             type="button"
@@ -60,7 +61,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Overlay */}
+      {/* 行動版選單只在 isMenuOpen 時渲染，AnimatePresence 負責保留退出動畫。 */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -75,6 +76,7 @@ const Navbar = () => {
                 <Link
                   key={item.id}
                   href={`#${item.id}`}
+                  // 點選錨點後關閉選單，避免跳轉到區塊後仍遮住內容。
                   onClick={() => setIsMenuOpen(false)}
                   className="text-base font-extrabold uppercase tracking-widest text-gray-200 hover:text-rbr-yellow transition-colors py-3 px-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-rbr-navy border-b border-white/10 last:border-0"
                   tabIndex={0}
@@ -87,7 +89,7 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      {/* Racing Line Animation */}
+      {/* 頁首底線進場動畫用來建立速度感，不參與任何互動狀態。 */}
       <motion.div
         initial={{ scaleX: 0, originX: 0 }}
         animate={{ scaleX: 1 }}

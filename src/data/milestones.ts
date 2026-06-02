@@ -1,3 +1,4 @@
+// 職涯節點資料供 RaceHistory 時間軸使用；alignment 決定桌面版卡片左右交錯。
 export const milestones = [
   {
     lap: "LAP 2022 - 2023",
