@@ -8,14 +8,17 @@ import { projects } from "@/data/projects";
 import type { Project } from "@/types/project";
 
 export default function ProjectGallery() {
+  // selectedProject 保存目前被點選的作品資料，Modal 依此顯示詳細內容。
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  // 卡片點擊時先放入資料再開啟 Modal，避免視窗開啟時沒有可渲染的 project。
   const handleProjectClick = (project: Project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
   };
 
+  // 讓整張卡片可用鍵盤 Enter/Space 開啟；內層連結取得焦點時不攔截事件。
   const handleProjectKeyDown = (
     event: KeyboardEvent<HTMLDivElement>,
     project: Project,
@@ -41,6 +44,7 @@ export default function ProjectGallery() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* 依 projects 資料動態渲染卡片，新增作品時只需補資料，不用複製 JSX。 */}
           {projects.map((project, index) => (
             <motion.div
               key={index}
@@ -55,7 +59,7 @@ export default function ProjectGallery() {
               aria-label={`開啟專案詳細資訊：${project.title}`}
               className="relative group cursor-pointer"
             >
-              {/* Carbon Fiber Background Effect */}
+              {/* 碳纖維背景是卡片裝飾層，放在內容下方以保留文字與連結可互動。 */}
               <div className="absolute inset-0 bg-[#080808] border border-white/5 rounded-xl overflow-hidden shadow-2xl transition-all group-hover:border-rbr-red/50">
                 <div
                   className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity"
@@ -74,6 +78,7 @@ export default function ProjectGallery() {
                     {project.category}
                   </span>
                   <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+                    {/* 外部連結只有在資料存在時才顯示，避免沒有網址的作品出現空按鈕。 */}
                     {project.links.github && (
                       <a
                         href={project.links.github}
@@ -110,6 +115,7 @@ export default function ProjectGallery() {
                 <p className="text-gray-400 text-sm mb-2 flex-grow leading-relaxed">
                   {project.description}
                 </p>
+                {/* readinessNote 是選填補充資訊，沒有內容時不保留空白區塊。 */}
                 {project.readinessNote && (
                   <div className="mb-4">
                     <span className="block text-xs text-gray-500 font-mono leading-relaxed">
@@ -119,6 +125,7 @@ export default function ProjectGallery() {
                 )}
 
                 <div className="flex flex-wrap gap-2 mt-auto">
+                  {/* tags 直接從作品資料產生，讓卡片上的技術標籤與 Modal 資料保持一致。 */}
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
@@ -143,6 +150,7 @@ export default function ProjectGallery() {
 
       <ProjectModal
         isOpen={isModalOpen}
+        // 關閉時只改開啟狀態，selectedProject 保留到退出動畫結束期間仍可顯示內容。
         onClose={() => setIsModalOpen(false)}
         project={selectedProject}
       />

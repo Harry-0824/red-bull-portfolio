@@ -1,5 +1,6 @@
 import type { Project } from "@/types/project";
 
+// 作品資料集中管理，首頁卡片與詳細 Modal 共用同一份內容來源。
 export const projects: Project[] = [
   {
     title: "企業前端專案（公開摘要）",
@@ -49,6 +50,7 @@ export const projects: Project[] = [
     image: "/projects/mg-motor.png",
     links: {
       live: "https://mg-motor.netlify.app/",
+      // 前後端 repo 分開呈現，Modal 會依 githubBackend 是否存在調整按鈕文案。
       github: "https://github.com/Harry-0824/MG-motor",
       githubBackend: "https://github.com/Harry-0824/my-api-project",
     },

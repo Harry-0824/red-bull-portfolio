@@ -10,6 +10,7 @@ export default function Home() {
     <div className="flex min-h-screen flex-col bg-rbr-navy text-white font-sans selection:bg-rbr-red selection:text-white">
       <Navbar />
       <main className="flex-grow">
+        {/* 首頁用固定區塊順序組成作品集敘事：入口、技能證據、經歷、作品與聯絡方式。 */}
         <Hero />
         <PerformanceDashboard />
         <RaceHistory />
@@ -17,7 +18,7 @@ export default function Home() {
         <ContactSection />
       </main>
 
-      {/* Simple Footer */}
+      {/* 年份即時計算，避免每年手動更新頁尾。 */}
       <footer className="py-12 border-t border-white/5 text-center text-xs font-mono text-gray-600">
         <div className="max-w-7xl mx-auto px-6 flex flex-col items-center gap-2">
           <div>

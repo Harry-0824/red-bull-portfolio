@@ -28,6 +28,7 @@ export default function PerformanceDashboard() {
 
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
           {skills.map((skill, index) => {
+            // icon 由資料層指定，這裡轉成元件後即可讓每張技能卡套用自己的視覺符號。
             const SkillIcon = skill.icon;
 
             return (
@@ -58,6 +59,7 @@ export default function PerformanceDashboard() {
                 </div>
 
                 <ul className="mt-auto space-y-3">
+                  {/* evidence 逐條列出可面試討論的實作證據，避免技能卡只停留在關鍵字。 */}
                   {skill.evidence.map((item) => (
                     <li
                       key={item}
@@ -75,6 +77,7 @@ export default function PerformanceDashboard() {
             );
           })}
 
+          {/* 總結卡把技能證據收束成面試可讀的訊號，位置跨欄以和一般技能卡做層級區隔。 */}
           <motion.aside
             initial={{ opacity: 0, scale: 0.96 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -89,6 +92,7 @@ export default function PerformanceDashboard() {
                 技能呈現改用證據脈絡，不再依賴百分比分數。
               </h3>
               <div className="mt-6 grid gap-3 md:grid-cols-3">
+                {/* 由 interviewSignals 動態渲染，未來增減訊號不需要改卡片結構。 */}
                 {interviewSignals.map((signal) => (
                   <div
                     key={signal}
