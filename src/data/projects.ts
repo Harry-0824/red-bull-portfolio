@@ -86,8 +86,9 @@ export const projects: Project[] = [
     title: "My Brand Workspace SaaS",
     category: "SaaS 產品",
     description:
-      "目標：持續迭代個人 SaaS 工作流產品。主要職責：CRUD 流程與狀態處理、跨頁互動設計、可部署的前端行為落地。前端價值：從產品思維到可測試介面的完整實務能力。",
-    objective: "展示長期維運型 SaaS 專案中的前端主導與迭代能力。",
+      "為自由工作者打造的私人工作區 SaaS MVP，整合專案、客戶、任務與收入紀錄 CRUD，並以真實資料驅動 Dashboard 與 Reports 檢視日常營運狀態。產品同時納入登入門檻、Supabase Auth 與 PostgreSQL RLS 資料隔離，完整呈現可部署的 SaaS 核心流程。",
+    objective:
+      "強化作品集中的 SaaS case study 表達，呈現從使用者問題、權限控管到資料驅動介面的完整產品落地能力。",
     stack: [
       "React",
       "TypeScript",
@@ -99,16 +100,16 @@ export const projects: Project[] = [
       "Netlify",
     ],
     metrics: [
-      { label: "產品方向", value: "工作流 SaaS" },
-      { label: "資料層", value: "Supabase" },
-      { label: "驗證方式", value: "Vitest / Testing Library" },
+      { label: "核心流程", value: "Projects / Clients / Tasks / Income CRUD" },
+      { label: "權限與資料", value: "Supabase Auth / PostgreSQL RLS" },
+      { label: "品質與部署", value: "Vitest / Testing Library / Netlify" },
     ],
     image: "/projects/My-Brand-Workspace.png",
     links: {
       live: "https://harry-brand-workspace.netlify.app/",
       github: "https://github.com/Harry-0824/my-brand-workspace",
     },
-    tags: ["React", "TypeScript", "Supabase", "SaaS 工作流"],
+    tags: ["SaaS MVP", "Supabase Auth", "PostgreSQL RLS", "Dashboard / Reports"],
   },
   {
     title: "AI Issue Scope Guard",
