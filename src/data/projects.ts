@@ -3,6 +3,36 @@ import type { Project } from "@/types/project";
 // 作品資料集中管理，首頁卡片與詳細 Modal 共用同一份內容來源。
 export const projects: Project[] = [
   {
+    title: "TicketFlow 全端工單管理系統",
+    category: "全端 MVP",
+    description:
+      "可操作的票務/工單管理系統，前端 Vue 3 + Vite，後端 ASP.NET Core Minimal API + EF Core，資料庫 SQLite / Supabase PostgreSQL 切換。自建 register / login / JWT，不走第三方 Auth。",
+    objective:
+      "展示從需求拆分、前後端 API contract、到部署上線的完整交付流程，是面試時最具說服力的主力專案。",
+    stack: [
+      "Vue 3",
+      "TypeScript",
+      "Vite",
+      "ASP.NET Core",
+      "EF Core",
+      "Supabase",
+      "PostgreSQL",
+      "GitHub Actions",
+    ],
+    metrics: [
+      { label: "核心流程", value: "Auth + Ticket CRUD" },
+      { label: "資料隔離", value: "EF Core + RLS" },
+      { label: "部署", value: "Netlify / Render / Supabase" },
+      { label: "CI", value: "GitHub Actions dotnet + node" },
+    ],
+    image: "/projects/ticketflow.png",
+    links: {
+      live: "https://ticket-flow-harry-0824.netlify.app/",
+      github: "https://github.com/Harry-0824/ticket-flow",
+    },
+    tags: ["Vue 3", "ASP.NET Core", "EF Core", "Supabase", "JWT", "全端"],
+  },
+  {
     title: "企業前端專案（公開摘要）",
     category: "商業前端專案",
     description:
@@ -27,34 +57,6 @@ export const projects: Project[] = [
       live: "https://bright-edu-data.web.app/",
     },
     tags: ["前端開發", "JavaScript", "響應式介面", "正式環境交付"],
-  },
-  {
-    title: "MG MOTOR React 品牌網站",
-    category: "品牌網站",
-    description:
-      "目標：打造品牌導向的汽車官網體驗。主要職責：前端頁面實作、RWD 版型調整、以及 API 串接內容呈現。前端價值：展示 React 實務開發與真實整合情境下的交付能力。",
-    objective: "呈現從品牌視覺落地到資料串接的完整前端實作流程。",
-    stack: [
-      "React",
-      "JavaScript",
-      "Styled Components",
-      "Node.js",
-      "Express",
-      "PostgreSQL",
-    ],
-    metrics: [
-      { label: "核心方向", value: "品牌網站 + RWD" },
-      { label: "資料整合", value: "Express / PostgreSQL API" },
-      { label: "展示環境", value: "Netlify" },
-    ],
-    image: "/projects/mg-motor.png",
-    links: {
-      live: "https://mg-motor.netlify.app/",
-      // 前後端 repo 分開呈現，Modal 會依 githubBackend 是否存在調整按鈕文案。
-      github: "https://github.com/Harry-0824/MG-motor",
-      githubBackend: "https://github.com/Harry-0824/my-api-project",
-    },
-    tags: ["React", "RWD", "API 串接", "品牌網站"],
   },
   {
     title: "Red Bull / Apex Flow 作品集網站",
@@ -112,49 +114,30 @@ export const projects: Project[] = [
     tags: ["SaaS MVP", "Supabase Auth", "PostgreSQL RLS", "Dashboard / Reports"],
   },
   {
-    title: "AI Issue Scope Guard",
-    category: "AI 開發工具",
+    title: "MG MOTOR React 品牌網站",
+    category: "品牌網站",
     description:
-      "目標：自動檢查 PR 是否偏離 Issue 範圍。主要職責：規格比對流程設計、檢查器介面實作。前端價值：強化 AI 協作下的規格一致性與交付風險控管。",
-    objective: "展示 spec-driven 開發流程與 AI 協作守門能力。",
+      "目標：打造品牌導向的汽車官網體驗。主要職責：前端頁面實作、RWD 版型調整、以及 API 串接內容呈現。前端價值：展示 React 實務開發與真實整合情境下的交付能力。",
+    objective: "呈現從品牌視覺落地到資料串接的完整前端實作流程。",
     stack: [
-      "Vue 3",
-      "TypeScript",
-      "Vite",
-      "Pinia",
-      "Vitest",
-      "GitHub API",
-      "Netlify",
+      "React",
+      "JavaScript",
+      "Styled Components",
+      "Node.js",
+      "Express",
+      "PostgreSQL",
     ],
     metrics: [
-      { label: "核心能力", value: "Issue Scope 驗證" },
-      { label: "開發流程", value: "Spec-Driven Development" },
-      { label: "風險控制", value: "AI Coding Guardrails" },
+      { label: "核心方向", value: "品牌網站 + RWD" },
+      { label: "資料整合", value: "Express / PostgreSQL API" },
+      { label: "展示環境", value: "Netlify" },
     ],
-    image: "/projects/AI Issue Scope Guard.png",
+    image: "/projects/mg-motor.png",
     links: {
-      live: "https://monumental-fudge-3c2f38.netlify.app/",
-      github: "https://github.com/Harry-0824/ai-issue-scope-guard",
+      live: "https://mg-motor.netlify.app/",
+      github: "https://github.com/Harry-0824/MG-motor",
+      githubBackend: "https://github.com/Harry-0824/mg-motor-api",
     },
-    tags: ["Vue 3", "TypeScript", "GitHub API", "規格導向開發"],
-  },
-  {
-    title: "ToDoList React",
-    category: "基礎互動工具",
-    description:
-      "目標：完成輕量待辦管理工具。主要職責：任務狀態流與本地儲存行為實作。前端價值：展示互動流程、狀態管理與基礎持久化能力。",
-    objective: "作為早期基礎專案，補充前端成長脈絡。",
-    stack: ["React", "JavaScript", "LocalStorage", "styled-components"],
-    metrics: [
-      { label: "專案階段", value: "基礎實作" },
-      { label: "資料保存", value: "LocalStorage" },
-      { label: "UI 方式", value: "styled-components" },
-    ],
-    image: "/projects/ToDoList.png",
-    links: {
-      live: "https://peaceful-genie-980c98.netlify.app/",
-      github: "https://github.com/Harry-0824/To_DoList_React",
-    },
-    tags: ["React", "JavaScript", "LocalStorage", "基礎專案"],
+    tags: ["React", "RWD", "API 串接", "品牌網站"],
   },
 ];
