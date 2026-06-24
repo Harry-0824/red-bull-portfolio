@@ -98,7 +98,7 @@ const RaceHistory = () => {
                     }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.8, delay: index * 0.2 }}
-                    viewport={{ once: true }}
+                    viewport={{ once: true, amount: 0 }}
                     className="bg-white/5 backdrop-blur-sm border border-white/10 p-8 rounded-lg hover:border-rbr-yellow/30 transition-colors"
                   >
                     <span className="text-rbr-yellow font-mono text-sm font-bold tracking-widest mb-2 block uppercase">
