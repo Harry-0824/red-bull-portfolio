@@ -25,7 +25,6 @@ export const projects: Project[] = [
       { label: "部署", value: "Netlify / Render / Supabase" },
       { label: "CI", value: "GitHub Actions dotnet + node" },
     ],
-    image: "/projects/ticketflow.png",
     links: {
       live: "https://ticket-flow-harry-0824.netlify.app/",
       github: "https://github.com/Harry-0824/ticket-flow",
@@ -52,7 +51,6 @@ export const projects: Project[] = [
       { label: "主要職責", value: "UI 與 API 串接" },
       { label: "公開範圍", value: "通用摘要" },
     ],
-    image: "",
     links: {
       live: "https://bright-edu-data.web.app/",
     },
@@ -77,7 +75,6 @@ export const projects: Project[] = [
       { label: "前端重點", value: "資訊呈現與互動體驗" },
       { label: "部署平台", value: "Netlify" },
     ],
-    image: "/brand/apex-flow-logo.svg",
     links: {
       live: "https://apex-flow-portfolio.netlify.app/",
       github: "https://github.com/Harry-0824/red-bull-portfolio",
@@ -106,7 +103,6 @@ export const projects: Project[] = [
       { label: "權限與資料", value: "Supabase Auth / PostgreSQL RLS" },
       { label: "品質與部署", value: "Vitest / Testing Library / Netlify" },
     ],
-    image: "/projects/My-Brand-Workspace.png",
     links: {
       live: "https://harry-brand-workspace.netlify.app/",
       github: "https://github.com/Harry-0824/my-brand-workspace",
@@ -132,7 +128,6 @@ export const projects: Project[] = [
       { label: "資料整合", value: "Express / PostgreSQL API" },
       { label: "展示環境", value: "Netlify" },
     ],
-    image: "/projects/mg-motor.png",
     links: {
       live: "https://mg-motor.netlify.app/",
       github: "https://github.com/Harry-0824/MG-motor",

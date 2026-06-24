@@ -7,7 +7,7 @@ export interface Project {
   objective: string;
   stack: string[];
   metrics: { label: string; value: string }[];
-  image: string;
+  // 圖片欄位已移除，Modal 改為純文字單欄呈現。
   // links 欄位皆為選填，ProjectModal 會依實際存在的連結決定要顯示哪些按鈕。
   links: {
     live?: string;
