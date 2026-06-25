@@ -3,15 +3,15 @@ import ProjectGallery from "./ProjectGallery";
 import { projects } from "@/data/projects";
 
 describe("ProjectGallery", () => {
-  it("renders project section and clickable project cards", () => {
+  it("renders structured project cards with descriptive actions", () => {
     render(<ProjectGallery />);
 
     expect(
-      screen.getByRole("heading", { name: "精選專案作品" }),
+      screen.getByRole("img", { name: /preview of ticketflow/i }),
     ).toBeInTheDocument();
 
     const cards = screen.getAllByRole("button", {
-      name: /開啟專案詳細資訊：/,
+      name: /view details for/i,
     });
 
     expect(cards).toHaveLength(projects.length);

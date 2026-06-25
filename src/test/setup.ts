@@ -1,5 +1,10 @@
 import { cleanup } from "@testing-library/react";
-import { createElement, Fragment, type ReactNode } from "react";
+import {
+  createElement,
+  Fragment,
+  type ImgHTMLAttributes,
+  type ReactNode,
+} from "react";
 import { afterEach, vi } from "vitest";
 import "@testing-library/jest-dom/vitest";
 
@@ -40,5 +45,32 @@ vi.mock("framer-motion", () => {
     motion,
     AnimatePresence: ({ children }: { children?: ReactNode }) =>
       createElement(Fragment, null, children),
+    useScroll: () => ({
+      scrollYProgress: 0,
+    }),
+    useSpring: <T,>(value: T) => value,
   };
 });
+
+vi.mock("next/image", () => ({
+  default: (
+    props: ImgHTMLAttributes<HTMLImageElement> & { priority?: boolean },
+  ) => {
+    const imgProps = { ...props };
+    delete imgProps.priority;
+
+    return createElement("img", imgProps);
+  },
+}));
+
+vi.mock("next/link", () => ({
+  default: ({
+    children,
+    href,
+    ...props
+  }: {
+    children?: ReactNode;
+    href: string;
+  } & Record<string, unknown>) =>
+    createElement("a", { href, ...props }, children),
+}));

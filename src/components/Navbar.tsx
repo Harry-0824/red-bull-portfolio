@@ -1,22 +1,25 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import Link from "next/link";
+import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { navLinks } from "@/data/navLinks";
 
-const Navbar = () => {
-  // 行動版選單狀態只影響導覽列展開與圖示切換，不保存到 URL 或全域狀態。
+export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-rbr-navy/80 backdrop-blur-md border-b border-white/5">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav
+      aria-label="Primary"
+      className="fixed left-0 top-0 z-50 w-full border-b border-white/5 bg-rbr-navy/80 backdrop-blur-md"
+    >
+      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
         <Link
           href="/"
-          className="text-xl font-black italic tracking-tighter text-white flex items-center gap-2"
+          aria-label="Apex Flow homepage"
+          className="flex items-center gap-2 text-xl font-black italic tracking-tighter text-white"
         >
           <Image
             src="/brand/apex-flow-logo.svg"
@@ -25,43 +28,41 @@ const Navbar = () => {
             height={28}
             className="h-7 w-7"
             priority
+            sizes="28px"
           />
           <span>Apex Flow</span>
         </Link>
 
-        {/* 桌面導覽直接由 navLinks 產生，讓錨點與行動版選單共用同一份資料。 */}
-        <div className="hidden md:flex gap-10 lg:gap-14 xl:gap-20">
+        <div className="hidden gap-10 md:flex lg:gap-14 xl:gap-20">
           {navLinks.map((item) => (
             <Link
               key={item.id}
               href={`#${item.id}`}
-              className="text-base xl:text-lg font-extrabold uppercase tracking-widest text-gray-200 hover:text-rbr-yellow transition-colors px-2 py-1 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-rbr-navy"
+              className="rounded px-2 py-1 text-base font-extrabold uppercase tracking-widest text-gray-200 transition-colors hover:text-rbr-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-rbr-navy xl:text-lg"
             >
               {item.name}
             </Link>
           ))}
         </div>
 
-        {/* 行動版按鈕同步 aria-expanded，讓輔助工具知道選單目前是否展開。 */}
         <div className="md:hidden">
           <button
             type="button"
-            aria-label={isMenuOpen ? "關閉選單" : "開啟選單"}
+            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isMenuOpen}
             aria-controls="mobile-nav"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-white p-3 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-rbr-navy"
+            onClick={() => setIsMenuOpen((value) => !value)}
+            className="rounded p-3 text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-rbr-navy"
           >
             {isMenuOpen ? (
-              <X className="text-rbr-red w-7 h-7" />
+              <X className="h-7 w-7 text-rbr-red" />
             ) : (
-              <Menu className="text-rbr-yellow w-7 h-7" />
+              <Menu className="h-7 w-7 text-rbr-yellow" />
             )}
           </button>
         </div>
       </div>
 
-      {/* 行動版選單只在 isMenuOpen 時渲染，AnimatePresence 負責保留退出動畫。 */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
@@ -69,17 +70,15 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-rbr-navy border-b border-white/5 overflow-hidden shadow-lg"
+            className="overflow-hidden border-b border-white/5 bg-rbr-navy shadow-lg md:hidden"
           >
             <div className="flex flex-col gap-2 p-6">
               {navLinks.map((item) => (
                 <Link
                   key={item.id}
                   href={`#${item.id}`}
-                  // 點選錨點後關閉選單，避免跳轉到區塊後仍遮住內容。
                   onClick={() => setIsMenuOpen(false)}
-                  className="text-base font-extrabold uppercase tracking-widest text-gray-200 hover:text-rbr-yellow transition-colors py-3 px-2 rounded focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-rbr-navy border-b border-white/10 last:border-0"
-                  tabIndex={0}
+                  className="rounded border-b border-white/10 px-2 py-3 text-base font-extrabold uppercase tracking-widest text-gray-200 transition-colors hover:text-rbr-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow focus-visible:ring-offset-2 focus-visible:ring-offset-rbr-navy last:border-0"
                 >
                   {item.name}
                 </Link>
@@ -89,15 +88,12 @@ const Navbar = () => {
         )}
       </AnimatePresence>
 
-      {/* 頁首底線進場動畫用來建立速度感，不參與任何互動狀態。 */}
       <motion.div
         initial={{ scaleX: 0, originX: 0 }}
         animate={{ scaleX: 1 }}
         transition={{ duration: 1, ease: "circOut", delay: 0.5 }}
-        className="absolute bottom-0 left-0 w-full h-[3px] bg-rbr-red"
+        className="absolute bottom-0 left-0 h-[3px] w-full bg-rbr-red"
       />
     </nav>
   );
-};
-
-export default Navbar;
+}
