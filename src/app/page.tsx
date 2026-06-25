@@ -29,7 +29,7 @@ export default function Home() {
             <a
               href="https://github.com/Harry-0824"
               target="_blank"
-              rel="noopener noreferrer"
+              rel="me noopener noreferrer"
               className="hover:text-white underline underline-offset-2"
               aria-label="GitHub"
             >

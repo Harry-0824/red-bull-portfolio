@@ -57,7 +57,13 @@ export default function ContactSection() {
                   href={link.href}
                   // 目前連結皆為外部入口；未來若加入站內履歷頁可用 isExternal 關閉 target/rel。
                   target={link.isExternal ? "_blank" : undefined}
-                  rel={link.isExternal ? "noopener noreferrer" : undefined}
+                  rel={
+                    link.isExternal
+                      ? link.label === "GitHub"
+                        ? "me noopener noreferrer"
+                        : "noopener noreferrer"
+                      : undefined
+                  }
                   aria-label={`${link.label}: ${link.value}`}
                   className="group relative overflow-hidden rounded-lg border border-white/10 bg-white/[0.04] p-6 transition hover:-translate-y-1 hover:border-rbr-red/70 hover:bg-white/[0.07] focus:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow"
                 >

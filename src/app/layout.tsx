@@ -1,23 +1,79 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import {
+  authorName,
+  canonicalUrl,
+  ogImageUrl,
+  profileJsonLd,
+  siteDescription,
+  siteMetadata,
+  siteName,
+  siteUrl,
+} from "@/lib/site-seo";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-// 全站共用的字體變數集中在 RootLayout 套用，避免各頁面重複設定字體 class。
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
 
-// App Router 會使用這組 metadata 產生基礎 SEO 標題與描述。
 export const metadata: Metadata = {
-  title: "Apex Flow | 前端工程師作品集",
-  description:
-    "前端工程師作品集，聚焦 React、Next.js、TypeScript、互動介面、效能優化與全端資料整合。",
+  metadataBase: new URL(siteUrl),
+  title: siteMetadata.title,
+  description: siteMetadata.description,
+  alternates: {
+    canonical: canonicalUrl,
+  },
+  authors: [
+    {
+      name: authorName,
+      url: canonicalUrl,
+    },
+  ],
+  creator: authorName,
+  publisher: siteName,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  openGraph: {
+    title: siteMetadata.title,
+    description: siteDescription,
+    url: canonicalUrl,
+    siteName,
+    locale: "zh_TW",
+    type: "website",
+    images: [
+      {
+        url: ogImageUrl,
+        width: 1200,
+        height: 630,
+        alt: siteMetadata.title,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteMetadata.title,
+    description: siteDescription,
+    images: [ogImageUrl],
+  },
+  icons: {
+    icon: [{ url: "/favicon.ico" }],
+    apple: [{ url: "/brand/apex-flow-logo.svg" }],
+  },
 };
 
 export default function RootLayout({
@@ -27,7 +83,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="zh-TW">
-      {/* children 代表 app/page.tsx 與後續路由內容，統一包在全站字體與反鋸齒設定下。 */}
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(profileJsonLd),
+          }}
+        />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
