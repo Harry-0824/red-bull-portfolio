@@ -1,27 +1,29 @@
 "use client";
 
-import { useEffect, useId, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { X, ExternalLink, Github } from "lucide-react";
+import { useEffect, useId, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { ExternalLink, Github, X } from "lucide-react";
 import type { Project } from "@/types/project";
 
 interface ProjectModalProps {
-  // isOpen 控制 AnimatePresence 是否渲染視窗，project 則提供視窗內容。
   isOpen: boolean;
   onClose: () => void;
   project: Project | null;
 }
 
-const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
+export default function ProjectModal({
+  isOpen,
+  onClose,
+  project,
+}: ProjectModalProps) {
   const dialogTitleId = useId();
   const dialogRef = useRef<HTMLDivElement>(null);
-  const previousBodyOverflowRef = useRef<string>("");
+  const previousBodyOverflowRef = useRef("");
   const previouslyFocusedElementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!isOpen) return;
 
-    // 開啟時記住原本焦點與 body overflow，關閉後復原以維持頁面操作體驗。
     previouslyFocusedElementRef.current =
       document.activeElement instanceof HTMLElement
         ? document.activeElement
@@ -29,10 +31,8 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
 
     previousBodyOverflowRef.current = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-
     dialogRef.current?.focus();
 
-    // Escape 提供鍵盤關閉路徑，與右上角按鈕及背景點擊維持一致行為。
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") {
         event.preventDefault();
@@ -43,14 +43,12 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
     window.addEventListener("keydown", handleKeyDown);
 
     return () => {
-      // 清理全域事件與 body overflow，避免 Modal 關閉後仍鎖住背景捲動。
       window.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = previousBodyOverflowRef.current;
       previouslyFocusedElementRef.current?.focus();
     };
   }, [isOpen, onClose]);
 
-  // 沒有作品資料時不渲染 Modal，避免存取 project 欄位造成 runtime error。
   if (!project) return null;
 
   return (
@@ -58,7 +56,6 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
       {isOpen && (
         <div className="modal-shell fixed inset-0 z-[100] flex items-center justify-center p-2 sm:p-4">
           <motion.div
-            // 點擊遮罩關閉 Modal；內容卡片不綁 onClick，因此點擊內容不會觸發關閉。
             onClick={onClose}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -67,63 +64,97 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
           />
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.9, y: 20 }}
             ref={dialogRef}
             role="dialog"
             aria-modal="true"
             aria-labelledby={dialogTitleId}
             tabIndex={-1}
-            className="modal-card relative mx-auto w-full max-w-3xl bg-[#080808] border border-white/10 rounded-sm overflow-hidden shadow-[0_0_50px_rgba(0,0,0,0.5)] motion-blur-in flex flex-col"
+            initial={{ opacity: 0, scale: 0.96, y: 18 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.96, y: 18 }}
+            className="modal-card relative mx-auto flex w-full max-w-3xl flex-col overflow-hidden rounded-sm border border-white/10 bg-[#080808] shadow-[0_0_50px_rgba(0,0,0,0.5)]"
           >
-            <div className="modal-card__header p-4 sm:p-6 border-b border-white/5 flex justify-between items-center bg-white/5">
+            <div className="flex items-center justify-between border-b border-white/5 bg-white/5 p-4 sm:p-6">
               <div className="min-w-0 pr-3">
+                <p className="text-[11px] font-black uppercase tracking-[0.25em] text-rbr-red">
+                  {project.category}
+                </p>
                 <h2
                   id={dialogTitleId}
-                  className="modal-card__title text-2xl sm:text-3xl font-black italic tracking-tighter text-white uppercase leading-tight"
+                  className="mt-3 text-2xl font-black italic leading-tight text-white sm:text-3xl"
                 >
                   {project.title}
                 </h2>
               </div>
               <button
+                type="button"
                 onClick={onClose}
-                aria-label="關閉專案詳細資訊視窗"
-                className="p-2 hover:bg-white/5 rounded-full transition-colors text-gray-400 hover:text-white"
+                aria-label={`Close modal for ${project.title}`}
+                className="rounded-full p-2 text-gray-400 transition-colors hover:bg-white/5 hover:text-white"
               >
                 <X size={24} />
               </button>
             </div>
 
-            <div className="modal-card__content p-4 sm:p-8 lg:max-h-[70vh] lg:overflow-y-auto">
+            <div className="p-4 sm:p-8 lg:max-h-[70vh] lg:overflow-y-auto">
               <section>
-                <h4 className="modal-card__section-title text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
-                  <span className="w-4 h-[1px] bg-rbr-red" /> 專案目標
-                </h4>
-                <p className="modal-card__objective text-gray-300 text-sm leading-relaxed font-medium">
+                <h3 className="flex items-center gap-2 text-[11px] font-black uppercase tracking-[0.25em] text-rbr-red">
+                  <span className="h-px w-4 bg-rbr-red" />
+                  Overview
+                </h3>
+                <p className="mt-3 text-sm leading-7 text-gray-300">
                   {project.objective}
                 </p>
               </section>
 
-              {/* readinessNote 用於補充作品公開程度或目前狀態，只有資料存在時顯示。 */}
-              {project.readinessNote && (
-                <div className="modal-card__readiness mt-6">
-                  <p className="text-xs text-gray-400 font-mono leading-relaxed">
-                    {project.readinessNote}
+              <section className="mt-6 grid gap-6 md:grid-cols-2">
+                <article>
+                  <h3 className="text-[11px] font-black uppercase tracking-[0.25em] text-rbr-yellow">
+                    Task
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-gray-300">
+                    {project.task}
                   </p>
-                </div>
-              )}
+                </article>
+                <article>
+                  <h3 className="text-[11px] font-black uppercase tracking-[0.25em] text-rbr-yellow">
+                    Result
+                  </h3>
+                  <p className="mt-3 text-sm leading-7 text-gray-300">
+                    {project.result}
+                  </p>
+                </article>
+              </section>
 
               <section className="mt-6">
-                <h4 className="modal-card__section-title text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
-                  <span className="w-4 h-[1px] bg-rbr-red" /> 技術堆疊
-                </h4>
-                <div className="modal-card__stack flex flex-wrap gap-1.5 sm:gap-2">
-                  {/* stack 以 pill 呈現，方便快速掃描專案技術組合。 */}
+                <h3 className="text-[11px] font-black uppercase tracking-[0.25em] text-rbr-red">
+                  Highlights
+                </h3>
+                <ul className="mt-3 space-y-3">
+                  {project.highlights.map((highlight) => (
+                    <li
+                      key={highlight}
+                      className="flex gap-3 text-sm leading-7 text-gray-300"
+                    >
+                      <span
+                        className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-rbr-yellow"
+                        aria-hidden="true"
+                      />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              <section className="mt-6">
+                <h3 className="text-[11px] font-black uppercase tracking-[0.25em] text-rbr-red">
+                  Stack
+                </h3>
+                <div className="mt-3 flex flex-wrap gap-2">
                   {project.stack.map((tech) => (
                     <span
                       key={tech}
-                      className="glow-pill px-2.5 sm:px-3 py-1 bg-rbr-red/5 rounded-full text-[10px] font-bold text-white uppercase tracking-wider"
+                      className="rounded-full bg-rbr-red/5 px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-white"
                     >
                       {tech}
                     </span>
@@ -131,22 +162,21 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                 </div>
               </section>
 
-              {/* metrics 可能為空；有資料時才顯示成果指標區塊。 */}
               {project.metrics.length > 0 && (
-                <section className="modal-card__metrics-section mt-6">
-                  <h4 className="modal-card__section-title text-[10px] font-black tracking-[0.2em] text-rbr-red uppercase mb-3 flex items-center gap-2">
-                    <span className="w-4 h-[1px] bg-rbr-red" /> 成果指標
-                  </h4>
-                  <div className="modal-card__metrics grid grid-cols-2 gap-2 sm:gap-4">
+                <section className="mt-6">
+                  <h3 className="text-[11px] font-black uppercase tracking-[0.25em] text-rbr-red">
+                    Metrics
+                  </h3>
+                  <div className="mt-3 grid grid-cols-2 gap-2 sm:gap-4">
                     {project.metrics.map((metric) => (
                       <div
                         key={metric.label}
-                        className="bg-white/5 p-3 sm:p-4 rounded-sm border border-white/5 hover:border-rbr-yellow/30 transition-all"
+                        className="rounded-sm border border-white/5 bg-white/5 p-3 sm:p-4"
                       >
-                        <span className="modal-card__metric-label block text-[10px] font-mono text-gray-500 uppercase mb-1">
+                        <span className="block text-[10px] font-mono uppercase text-gray-500">
                           {metric.label}
                         </span>
-                        <span className="modal-card__metric-value text-lg sm:text-xl font-black italic tracking-tighter text-rbr-yellow">
+                        <span className="mt-1 block text-lg font-black italic tracking-tighter text-rbr-yellow sm:text-xl">
                           {metric.value}
                         </span>
                       </div>
@@ -155,50 +185,53 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
                 </section>
               )}
 
-              {/* 依作品提供的 live / github / backend 連結組合出可用操作，避免無效外連。 */}
+              {project.readinessNote && (
+                <p className="mt-6 text-xs leading-6 text-gray-400">
+                  {project.readinessNote}
+                </p>
+              )}
+
               {(project.links.live ||
                 project.links.github ||
                 project.links.githubBackend) && (
-                <div className="modal-card__actions mt-6 pt-4 sm:pt-6 flex flex-col sm:flex-row gap-3 sm:gap-4 border-t border-white/5">
+                <div className="mt-6 flex flex-col gap-3 border-t border-white/5 pt-6 sm:flex-row sm:gap-4">
                   {project.links.live && (
                     <a
                       href={project.links.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="modal-card__primary-link flex-1 bg-rbr-red hover:bg-red-700 text-white font-black italic uppercase text-xs py-3 sm:py-4 rounded-sm flex items-center justify-center gap-2 transition-all shadow-[0_0_20px_rgba(224,30,34,0.3)]"
+                      className="flex flex-1 items-center justify-center gap-2 rounded-sm bg-rbr-red py-3 text-xs font-black uppercase italic text-white shadow-[0_0_20px_rgba(224,30,34,0.3)] transition-all hover:bg-red-700"
                     >
-                      查看網站 <ExternalLink size={14} />
+                      Open Live Site <ExternalLink size={14} />
                     </a>
                   )}
 
-                  {(project.links.github || project.links.githubBackend) && (
-                    <div className="modal-card__repo-links flex-1 flex flex-col gap-2">
-                      {project.links.github && (
-                        <a
-                          href={project.links.github}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="modal-card__repo-link w-full border border-white/20 hover:border-white/40 text-white font-black italic uppercase text-xs py-2 rounded-sm flex items-center justify-center gap-2 transition-all"
-                        >
-                          {project.links.githubBackend
-                            ? "前端原始碼"
-                            : "查看原始碼"}{" "}
-                          <Github size={14} />
-                        </a>
-                      )}
+                  <div className="flex flex-1 flex-col gap-2">
+                    {project.links.github && (
+                      <a
+                        href={project.links.github}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex w-full items-center justify-center gap-2 rounded-sm border border-white/20 py-2 text-xs font-black uppercase italic text-white transition-all hover:border-white/40"
+                      >
+                        {project.links.githubBackend
+                          ? "Frontend Repository"
+                          : "Project Repository"}{" "}
+                        <Github size={14} />
+                      </a>
+                    )}
 
-                      {project.links.githubBackend && (
-                        <a
-                          href={project.links.githubBackend}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="modal-card__repo-link w-full border border-white/20 hover:border-white/40 text-white font-black italic uppercase text-xs py-2 rounded-sm flex items-center justify-center gap-2 transition-all"
-                        >
-                          後端原始碼 <Github size={14} />
-                        </a>
-                      )}
-                    </div>
-                  )}
+                    {project.links.githubBackend && (
+                      <a
+                        href={project.links.githubBackend}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="flex w-full items-center justify-center gap-2 rounded-sm border border-white/20 py-2 text-xs font-black uppercase italic text-white transition-all hover:border-white/40"
+                      >
+                        Backend Repository <Github size={14} />
+                      </a>
+                    )}
+                  </div>
                 </div>
               )}
             </div>
@@ -207,6 +240,4 @@ const ProjectModal = ({ isOpen, onClose, project }: ProjectModalProps) => {
       )}
     </AnimatePresence>
   );
-};
-
-export default ProjectModal;
+}

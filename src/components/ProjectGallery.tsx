@@ -1,6 +1,7 @@
 "use client";
 
-import { type KeyboardEvent, useState } from "react";
+import Image from "next/image";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
 import ProjectModal from "./ProjectModal";
@@ -8,88 +9,69 @@ import { projects } from "@/data/projects";
 import type { Project } from "@/types/project";
 
 export default function ProjectGallery() {
-  // selectedProject 保存目前被點選的作品資料，Modal 依此顯示詳細內容。
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // 卡片點擊時先放入資料再開啟 Modal，避免視窗開啟時沒有可渲染的 project。
-  const handleProjectClick = (project: Project) => {
+  const handleProjectOpen = (project: Project) => {
     setSelectedProject(project);
     setIsModalOpen(true);
   };
 
-  // 讓整張卡片可用鍵盤 Enter/Space 開啟；內層連結取得焦點時不攔截事件。
-  const handleProjectKeyDown = (
-    event: KeyboardEvent<HTMLDivElement>,
-    project: Project,
-  ) => {
-    if (event.currentTarget !== event.target) return;
-
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      handleProjectClick(project);
-    }
-  };
-
   return (
-    <section id="projects" className="py-24 px-4 bg-rbr-navy">
-      <div className="max-w-6xl mx-auto">
+    <section
+      id="projects"
+      aria-labelledby="projects-title"
+      className="bg-rbr-navy px-4 py-24"
+    >
+      <div className="mx-auto max-w-6xl">
         <div className="mb-16">
-          <h2 className="text-4xl font-black italic tracking-tighter mb-4 inline-block border-b-4 border-rbr-red text-white">
+          <h2
+            id="projects-title"
+            className="mb-4 inline-block border-b-4 border-rbr-red text-4xl font-black italic tracking-tighter text-white"
+          >
             精選專案作品
           </h2>
-          <p className="text-gray-400 mt-4 max-w-xl font-bold uppercase tracking-widest text-xs">
-            以 React / Next.js 前端實作為主，整理需求拆解、介面互動與資料串接的實作案例。
+          <p className="mt-4 max-w-2xl text-sm font-medium leading-7 text-gray-400 md:text-base">
+            以可公開的前端案例整理產品定位、任務拆解、技術選型與交付結果，讓每個專案不只展示畫面，也能說明實作深度。
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* 依 projects 資料動態渲染卡片，新增作品時只需補資料，不用複製 JSX。 */}
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, index) => (
-            <motion.div
-              key={index}
+            <motion.article
+              key={project.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
+              transition={{ delay: index * 0.08 }}
               viewport={{ once: true, amount: 0 }}
-              onClick={() => handleProjectClick(project)}
-              onKeyDown={(event) => handleProjectKeyDown(event, project)}
-              role="button"
-              tabIndex={0}
-              aria-label={`開啟專案詳細資訊：${project.title}`}
-              className="relative group cursor-pointer"
+              className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#080808] shadow-2xl transition-all hover:border-rbr-red/60"
             >
-              {/* 碳纖維背景是卡片裝飾層，放在內容下方以保留文字與連結可互動。 */}
-              <div className="absolute inset-0 bg-[#080808] border border-white/5 rounded-xl overflow-hidden shadow-2xl transition-all group-hover:border-rbr-red/50">
-                <div
-                  className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity"
-                  style={{
-                    backgroundImage: `repeating-linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%, #000), 
-                                     repeating-linear-gradient(45deg, #000 25%, #151515 25%, #151515 75%, #000 75%, #000)`,
-                    backgroundSize: "4px 4px",
-                    backgroundPosition: "0 0, 2px 2px",
-                  }}
+              <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-white/5">
+                <Image
+                  src={project.image.src}
+                  alt={project.image.alt}
+                  fill
+                  className="object-cover transition duration-500 group-hover:scale-[1.03]"
+                  sizes="(min-width: 1280px) 384px, (min-width: 768px) 50vw, 100vw"
                 />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/20 to-transparent" />
               </div>
 
-              <div className="relative p-8 h-full flex flex-col text-white">
-                <div className="flex justify-between items-start mb-6">
-                  <span className="text-[10px] font-bold tracking-widest text-rbr-red uppercase">
+              <div className="flex flex-1 flex-col p-6 text-white">
+                <div className="mb-4 flex items-start justify-between gap-4">
+                  <span className="rounded-full border border-rbr-red/30 bg-rbr-red/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-rbr-red">
                     {project.category}
                   </span>
-                  <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                    {/* 外部連結只有在資料存在時才顯示，避免沒有網址的作品出現空按鈕。 */}
+                  <div className="flex gap-3">
                     {project.links.github && (
                       <a
                         href={project.links.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="GitHub"
+                        aria-label={`Open GitHub repository for ${project.title}`}
+                        className="text-gray-300 transition hover:text-rbr-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow"
                       >
-                        <Github
-                          size={18}
-                          className="text-white hover:text-rbr-yellow"
-                        />
+                        <Github size={18} />
                       </a>
                     )}
                     {project.links.live && (
@@ -97,60 +79,78 @@ export default function ProjectGallery() {
                         href={project.links.live}
                         target="_blank"
                         rel="noopener noreferrer"
-                        aria-label="Live Demo"
+                        aria-label={`Open live site for ${project.title}`}
+                        className="text-gray-300 transition hover:text-rbr-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow"
                       >
-                        <ExternalLink
-                          size={18}
-                          className="text-white hover:text-rbr-yellow"
-                        />
+                        <ExternalLink size={18} />
                       </a>
                     )}
                   </div>
                 </div>
 
-                <h3 className="text-2xl font-black mb-3 group-hover:text-rbr-yellow transition-colors italic">
+                <h3 className="text-2xl font-black italic text-white transition-colors group-hover:text-rbr-yellow">
                   {project.title}
                 </h3>
-
-                <p className="text-gray-400 text-sm mb-2 flex-grow leading-relaxed">
+                <p className="mt-3 text-sm leading-7 text-gray-300">
                   {project.description}
                 </p>
-                {/* readinessNote 是選填補充資訊，沒有內容時不保留空白區塊。 */}
-                {project.readinessNote && (
-                  <div className="mb-4">
-                    <span className="block text-xs text-gray-500 font-mono leading-relaxed">
-                      {project.readinessNote}
-                    </span>
-                  </div>
-                )}
 
-                <div className="flex flex-wrap gap-2 mt-auto">
-                  {/* tags 直接從作品資料產生，讓卡片上的技術標籤與 Modal 資料保持一致。 */}
+                <dl className="mt-6 grid gap-4 text-sm">
+                  <div>
+                    <dt className="font-mono text-[11px] uppercase tracking-[0.25em] text-rbr-yellow">
+                      Task
+                    </dt>
+                    <dd className="mt-2 leading-7 text-gray-300">{project.task}</dd>
+                  </div>
+                  <div>
+                    <dt className="font-mono text-[11px] uppercase tracking-[0.25em] text-rbr-yellow">
+                      Result
+                    </dt>
+                    <dd className="mt-2 leading-7 text-gray-300">
+                      {project.result}
+                    </dd>
+                  </div>
+                </dl>
+
+                <ul className="mt-6 space-y-3 text-sm text-gray-200">
+                  {project.highlights.slice(0, 2).map((highlight) => (
+                    <li key={highlight} className="flex gap-3 leading-7">
+                      <span
+                        className="mt-3 h-1.5 w-1.5 shrink-0 rounded-full bg-rbr-red"
+                        aria-hidden="true"
+                      />
+                      <span>{highlight}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-6 flex flex-wrap gap-2">
                   {project.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="text-[10px] px-2 py-1 bg-white/5 border border-white/10 rounded-sm font-mono text-gray-400"
+                      className="rounded-sm border border-white/10 bg-white/5 px-2 py-1 text-[10px] font-mono text-gray-300"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-              </div>
 
-              {/* Hover racing stripe */}
-              <motion.div
-                initial={{ height: 0 }}
-                whileHover={{ height: "4px" }}
-                className="absolute bottom-0 left-0 right-0 bg-rbr-red rounded-b-xl"
-              />
-            </motion.div>
+                <button
+                  type="button"
+                  onClick={() => handleProjectOpen(project)}
+                  className="mt-6 inline-flex items-center justify-center rounded-sm bg-rbr-red px-4 py-3 text-sm font-black uppercase tracking-[0.2em] text-white transition hover:bg-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow"
+                  aria-label={`View details for ${project.title}`}
+                >
+                  View Details
+                </button>
+              </div>
+            </motion.article>
           ))}
         </div>
       </div>
 
       <ProjectModal
         isOpen={isModalOpen}
-        // 關閉時只改開啟狀態，selectedProject 保留到退出動畫結束期間仍可顯示內容。
         onClose={() => setIsModalOpen(false)}
         project={selectedProject}
       />

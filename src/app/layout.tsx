@@ -13,11 +13,13 @@ import {
 } from "@/lib/site-seo";
 
 const geistSans = Geist({
+  display: "swap",
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
 const geistMono = Geist_Mono({
+  display: "swap",
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
