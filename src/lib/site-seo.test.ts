@@ -1,7 +1,10 @@
-import { readFileSync } from "node:fs";
 import { describe, expect, it } from "vitest";
+import robots from "@/app/robots";
+import sitemap from "@/app/sitemap";
 import {
   canonicalUrl,
+  googleSiteVerification,
+  ogImageUrl,
   siteDescription,
   siteName,
   siteUrl,
@@ -14,21 +17,43 @@ describe("site seo data", () => {
     expect(siteUrl).toBe("https://apex-flow-portfolio.netlify.app");
     expect(canonicalUrl).toBe("https://apex-flow-portfolio.netlify.app/");
     expect(siteDescription).toContain("Apex Flow");
+    expect(ogImageUrl).toBe(
+      "https://apex-flow-portfolio.netlify.app/og/apex-flow-og.png",
+    );
+    expect(googleSiteVerification).toBe("google51fee8f57d8f504c");
     expect(socialProfiles).toContain(
       "https://github.com/Harry-0824",
     );
   });
 });
 
-describe("static seo files", () => {
-  it("provides a sitemap and robots file for crawlers", () => {
-    const sitemap = readFileSync("public/sitemap.xml", "utf8");
-    const robots = readFileSync("public/robots.txt", "utf8");
+describe("seo metadata routes", () => {
+  it("provides sitemap and robots data for crawlers", () => {
+    const sitemapEntries = sitemap();
+    const robotsConfig = robots();
+    const robotsJson = JSON.stringify(robotsConfig);
 
-    expect(sitemap).toContain("<loc>https://apex-flow-portfolio.netlify.app/</loc>");
-    expect(sitemap).toContain("<lastmod>");
-    expect(robots).toContain("User-agent: *");
-    expect(robots).toContain("Disallow: /api/");
-    expect(robots).toContain("Sitemap: https://apex-flow-portfolio.netlify.app/sitemap.xml");
+    expect(sitemapEntries).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          url: "https://apex-flow-portfolio.netlify.app/",
+        }),
+        expect.objectContaining({
+          url: "https://apex-flow-portfolio.netlify.app/projects/ticket-flow",
+        }),
+        expect.objectContaining({
+          url: "https://apex-flow-portfolio.netlify.app/projects/my-brand-workspace",
+        }),
+        expect.objectContaining({
+          url: "https://apex-flow-portfolio.netlify.app/projects/mg-motor",
+        }),
+        expect.objectContaining({
+          url: "https://apex-flow-portfolio.netlify.app/projects/apex-flow",
+        }),
+      ]),
+    );
+    expect(robotsConfig.sitemap).toBe(`${siteUrl}/sitemap.xml`);
+    expect(robotsJson).toContain("Googlebot");
+    expect(robotsJson).toContain("/api/");
   });
 });

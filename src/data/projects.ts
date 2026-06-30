@@ -2,6 +2,7 @@ import type { Project } from "@/types/project";
 
 export const projects: Project[] = [
   {
+    slug: "ticket-flow",
     title: "TicketFlow 全端工單管理系統",
     category: "全端 MVP",
     description:
@@ -41,6 +42,26 @@ export const projects: Project[] = [
       github: "https://github.com/Harry-0824/ticket-flow",
     },
     tags: ["Vue 3", "ASP.NET Core", "EF Core", "Supabase", "JWT", "全端"],
+    caseStudy: {
+      scope: [
+        "建立可登入的 ticket workflow MVP，涵蓋 ticket list、status、priority、keyword filtering 與 CRUD path。",
+        "串接 Vue 3 frontend、ASP.NET Core Minimal API、EF Core data model 與 Supabase PostgreSQL deployment。",
+        "補齊本地與雲端部署流程，讓作品可被 demo、review 與後續迭代。",
+      ],
+      architecture: [
+        "Vue 3 + Vite frontend 負責列表、表單與狀態篩選互動。",
+        "ASP.NET Core Minimal API 封裝 ticket endpoints、auth boundary 與 EF Core persistence。",
+        "Supabase PostgreSQL 作為 production database，Render 與 Netlify 分別承載 API 與 frontend。",
+      ],
+      problems: [
+        "早期 MVP 需要同時證明 UI、API、database 與 deployment path，容易只停留在靜態展示。",
+        "Ticket filtering 與 CRUD 狀態需要前後端 schema 一致，否則 demo flow 會出現資料不一致。",
+      ],
+      solutions: [
+        "用 typed query params 與明確 ticket fields 串起 status、priority、keyword filtering。",
+        "以 EF Core migration、Supabase production database 與 CI checks 固定可重複驗證的交付流程。",
+      ],
+    },
   },
   {
     title: "企業前端專案（公開摘要）",
@@ -80,6 +101,7 @@ export const projects: Project[] = [
     tags: ["前端維護", "JavaScript", "企業專案", "RWD"],
   },
   {
+    slug: "apex-flow",
     title: "Red Bull / Apex Flow 作品集網站",
     category: "作品集網站",
     description:
@@ -116,8 +138,29 @@ export const projects: Project[] = [
       github: "https://github.com/Harry-0824/red-bull-portfolio",
     },
     tags: ["Next.js", "SEO", "Accessibility", "Portfolio"],
+    caseStudy: {
+      scope: [
+        "建立以 Apex Flow 為品牌語彙的 Next.js frontend portfolio。",
+        "整理首頁 hero、about、performance、project gallery 與 contact flow。",
+        "補齊 metadata、structured data、crawler-facing routes 與社群分享預覽。",
+      ],
+      architecture: [
+        "Next.js App Router 管理首頁、metadata、sitemap、robots 與 project case-study routes。",
+        "React component sections 分層呈現 portfolio narrative，project data 集中於 typed data file。",
+        "Tailwind CSS 與既有 Red Bull-inspired token 維持高對比、動態且可維護的視覺系統。",
+      ],
+      problems: [
+        "作品集需要同時服務求職瀏覽、SEO crawler 與社群分享情境，不能只依賴單頁視覺展示。",
+        "專案卡資訊缺少可分享的 detail URL，面試或履歷連結無法直接指向特定案例。",
+      ],
+      solutions: [
+        "以集中化 SEO constants 對齊 metadata、JSON-LD、OG image、robots 與 sitemap。",
+        "新增 static case-study routes，讓每個指定作品都有固定 section 與可分享網址。",
+      ],
+    },
   },
   {
+    slug: "my-brand-workspace",
     title: "My Brand Workspace SaaS",
     category: "SaaS MVP",
     description:
@@ -156,8 +199,29 @@ export const projects: Project[] = [
       github: "https://github.com/Harry-0824/my-brand-workspace",
     },
     tags: ["SaaS MVP", "Supabase Auth", "PostgreSQL RLS", "Dashboard"],
+    caseStudy: {
+      scope: [
+        "建立個人品牌營運用 SaaS MVP，涵蓋 projects、clients、tasks 與 income tracking。",
+        "串接 Supabase Auth、PostgreSQL RLS 與前端 dashboard workflow。",
+        "用 Vitest / Testing Library 保護主要操作流程與資料呈現。",
+      ],
+      architecture: [
+        "React + TypeScript frontend 以 dashboard pages 管理品牌營運資料。",
+        "Supabase Auth 提供登入邊界，PostgreSQL RLS 控制 user-owned records。",
+        "Netlify 承載 frontend，Supabase 負責 auth、database 與資料權限。",
+      ],
+      problems: [
+        "Freelance / personal brand workflow 同時包含專案、客戶、任務與收入，資料關聯容易分散。",
+        "沒有 RLS 與測試保護時，MVP 難以說明資料隔離與可維護性。",
+      ],
+      solutions: [
+        "將核心營運資料收斂到明確的 CRUD surfaces，讓 dashboard 可快速掃描與更新。",
+        "以 Supabase Auth / RLS 建立安全邊界，並用 component tests 驗證主要 UI 狀態。",
+      ],
+    },
   },
   {
+    slug: "mg-motor",
     title: "MG MOTOR React 品牌網站",
     category: "品牌網站",
     description:
@@ -195,5 +259,25 @@ export const projects: Project[] = [
       githubBackend: "https://github.com/Harry-0824/mg-motor-api",
     },
     tags: ["React", "RWD", "API 串接", "品牌網站"],
+    caseStudy: {
+      scope: [
+        "建立 MG MOTOR 品牌展示網站，呈現車款資訊、品牌內容與 conversion-oriented CTA。",
+        "完成 RWD layout、主要視覺區塊與前後端資料串接。",
+        "維持可部署的 frontend / backend repository split，方便展示與維護。",
+      ],
+      architecture: [
+        "React frontend 負責品牌頁面、車款展示與 responsive interaction。",
+        "Node.js / Express API 提供資料來源，PostgreSQL 管理後端資料。",
+        "Netlify 承載 frontend，backend repository 獨立維護 API service。",
+      ],
+      problems: [
+        "品牌展示頁需要兼顧視覺吸引力、手機閱讀與 CTA 可見度。",
+        "車款資料與品牌內容若完全寫死，後續調整與 API 展示價值會不足。",
+      ],
+      solutions: [
+        "以 React component sections 拆分 hero、content、vehicle detail 與 CTA 區塊。",
+        "保留 Express / PostgreSQL backend path，讓作品能展示完整資料整合能力。",
+      ],
+    },
   },
 ];

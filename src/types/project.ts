@@ -8,7 +8,15 @@ export interface ProjectImage {
   alt: string;
 }
 
+export interface ProjectCaseStudy {
+  scope: string[];
+  architecture: string[];
+  problems: string[];
+  solutions: string[];
+}
+
 export interface Project {
+  slug?: string;
   title: string;
   category: string;
   description: string;
@@ -26,4 +34,5 @@ export interface Project {
   };
   tags: string[];
   readinessNote?: string;
+  caseStudy?: ProjectCaseStudy;
 }

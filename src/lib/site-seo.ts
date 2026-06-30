@@ -11,7 +11,9 @@ export const siteDescription =
 
 export const socialProfiles = ["https://github.com/Harry-0824"];
 
-export const ogImageUrl = `${siteUrl}/brand/apex-flow-logo.svg`;
+export const ogImageUrl = `${siteUrl}/og/apex-flow-og.png`;
+
+export const googleSiteVerification = "google51fee8f57d8f504c";
 
 export const siteMetadata = {
   title: "Apex Flow | Red Bull 風格作品集",

@@ -8,10 +8,10 @@ const contactLinks = [
     label: "Email",
     title: "直接聯絡",
     description: "適合職缺邀約、合作討論與面試時程安排。",
-    href: "https://mail.google.com/mail/?view=cm&fs=1&to=princ11290824%40gmail.com",
+    href: "mailto:princ11290824@gmail.com",
     value: "princ11290824@gmail.com",
     icon: Mail,
-    isExternal: true,
+    isExternal: false,
   },
   {
     label: "GitHub",

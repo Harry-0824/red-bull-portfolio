@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /api/
-
-Sitemap: https://apex-flow-portfolio.netlify.app/sitemap.xml

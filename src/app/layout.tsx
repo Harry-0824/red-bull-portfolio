@@ -4,6 +4,7 @@ import "./globals.css";
 import {
   authorName,
   canonicalUrl,
+  googleSiteVerification,
   ogImageUrl,
   profileJsonLd,
   siteDescription,
@@ -39,6 +40,9 @@ export const metadata: Metadata = {
   ],
   creator: authorName,
   publisher: siteName,
+  verification: {
+    google: googleSiteVerification,
+  },
   robots: {
     index: true,
     follow: true,

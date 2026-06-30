@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";
@@ -135,14 +136,31 @@ export default function ProjectGallery() {
                   ))}
                 </div>
 
-                <button
-                  type="button"
-                  onClick={() => handleProjectOpen(project)}
-                  className="mt-6 inline-flex items-center justify-center rounded-sm bg-rbr-red px-4 py-3 text-sm font-black uppercase tracking-[0.2em] text-white transition hover:bg-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow"
-                  aria-label={`View details for ${project.title}`}
+                <div
+                  className={
+                    project.slug && project.caseStudy
+                      ? "mt-6 grid gap-3 sm:grid-cols-2"
+                      : "mt-6 grid gap-3"
+                  }
                 >
-                  View Details
-                </button>
+                  <button
+                    type="button"
+                    onClick={() => handleProjectOpen(project)}
+                    className="inline-flex items-center justify-center rounded-sm bg-rbr-red px-4 py-3 text-sm font-black uppercase tracking-[0.2em] text-white transition hover:bg-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow"
+                    aria-label={`View details for ${project.title}`}
+                  >
+                    View Details
+                  </button>
+                  {project.slug && project.caseStudy && (
+                    <Link
+                      href={`/projects/${project.slug}`}
+                      className="inline-flex items-center justify-center rounded-sm border border-white/20 px-4 py-3 text-sm font-black uppercase tracking-[0.2em] text-white transition hover:border-rbr-yellow hover:text-rbr-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow"
+                      aria-label={`Open case study for ${project.title}`}
+                    >
+                      Case Study
+                    </Link>
+                  )}
+                </div>
               </div>
             </motion.article>
           ))}
