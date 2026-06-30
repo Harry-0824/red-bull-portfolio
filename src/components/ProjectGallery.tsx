@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -47,17 +46,6 @@ export default function ProjectGallery() {
               viewport={{ once: true, amount: 0 }}
               className="group flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#080808] shadow-2xl transition-all hover:border-rbr-red/60"
             >
-              <div className="relative aspect-[16/10] overflow-hidden border-b border-white/10 bg-white/5">
-                <Image
-                  src={project.image.src}
-                  alt={project.image.alt}
-                  fill
-                  className="object-cover transition duration-500 group-hover:scale-[1.03]"
-                  sizes="(min-width: 1280px) 384px, (min-width: 768px) 50vw, 100vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/20 to-transparent" />
-              </div>
-
               <div className="flex flex-1 flex-col p-6 text-white">
                 <div className="mb-4 flex items-start justify-between gap-4">
                   <span className="rounded-full border border-rbr-red/30 bg-rbr-red/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.25em] text-rbr-red">
@@ -154,7 +142,7 @@ export default function ProjectGallery() {
                   {project.slug && project.caseStudy && (
                     <Link
                       href={`/projects/${project.slug}`}
-                      className="inline-flex items-center justify-center rounded-sm border border-white/20 px-4 py-3 text-sm font-black uppercase tracking-[0.2em] text-white transition hover:border-rbr-yellow hover:text-rbr-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow"
+                      className="inline-flex items-center justify-center rounded-sm border border-white/20 px-4 py-3 text-center text-sm font-black uppercase leading-5 tracking-[0.2em] text-white transition hover:border-rbr-yellow hover:text-rbr-yellow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow"
                       aria-label={`Open case study for ${project.title}`}
                     >
                       Case Study

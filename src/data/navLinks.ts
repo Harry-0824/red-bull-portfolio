@@ -1,7 +1,7 @@
 export const navLinks = [
-  { name: "About", id: "about" },
-  { name: "Skills", id: "performance" },
-  { name: "Projects", id: "projects" },
-  { name: "Timeline", id: "stats" },
-  { name: "Contact", id: "contact" },
+  { name: "關於", id: "about" },
+  { name: "技能", id: "performance" },
+  { name: "專案", id: "projects" },
+  { name: "時間軸", id: "stats" },
+  { name: "聯絡", id: "contact" },
 ];

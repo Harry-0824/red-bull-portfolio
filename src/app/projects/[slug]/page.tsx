@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink, Github } from "lucide-react";
@@ -102,7 +101,7 @@ export default async function ProjectCaseStudyPage({
       </section>
 
       <section className="px-4 py-16 sm:py-20">
-        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
           <div>
             <p className="text-[11px] font-black uppercase tracking-[0.28em] text-rbr-red">
               {project.category}
@@ -137,17 +136,26 @@ export default async function ProjectCaseStudyPage({
             </div>
           </div>
 
-          <div className="relative aspect-[16/10] overflow-hidden rounded-sm border border-white/10 bg-white/5 shadow-2xl">
-            <Image
-              src={project.image.src}
-              alt={project.image.alt}
-              fill
-              priority
-              className="object-cover"
-              sizes="(min-width: 1024px) 520px, 100vw"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-rbr-navy/60 via-transparent to-transparent" />
-          </div>
+          <aside className="grid gap-4 rounded-sm border border-white/10 bg-white/[0.04] p-6 shadow-2xl">
+            <p className="text-[11px] font-black uppercase tracking-[0.28em] text-rbr-yellow">
+              案例摘要
+            </p>
+            <dl className="grid gap-4 text-sm">
+              {project.metrics.map((metric) => (
+                <div
+                  key={metric.label}
+                  className="border-b border-white/10 pb-4 last:border-0 last:pb-0"
+                >
+                  <dt className="font-mono text-[11px] uppercase tracking-[0.2em] text-rbr-red">
+                    {metric.label}
+                  </dt>
+                  <dd className="mt-2 font-bold leading-7 text-white">
+                    {metric.value}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </aside>
         </div>
       </section>
 

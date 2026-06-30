@@ -5,9 +5,9 @@ const focusPoints = [
 ];
 
 const quickFacts = [
-  { label: "Primary Stack", value: "React / Next.js / TypeScript" },
-  { label: "Focus", value: "Product UI, SEO, Accessibility" },
-  { label: "Collaboration", value: "Issue-driven delivery with small diffs" },
+  { label: "主要技術", value: "React / Next.js / TypeScript" },
+  { label: "專注方向", value: "產品介面、SEO、可近性" },
+  { label: "協作方式", value: "Issue 驅動交付，維持小幅 diff" },
 ];
 
 export default function AboutSection() {
