@@ -7,13 +7,19 @@ describe("ProjectGallery", () => {
     render(<ProjectGallery />);
 
     expect(
-      screen.getByRole("img", { name: /preview of ticketflow/i }),
-    ).toBeInTheDocument();
+      screen.queryByRole("img", { name: /preview of ticketflow/i }),
+    ).not.toBeInTheDocument();
 
-    const cards = screen.getAllByRole("button", {
+    const detailButtons = screen.getAllByRole("button", {
       name: /view details for/i,
     });
+    const caseStudyLinks = screen.getAllByRole("link", {
+      name: /open case study for/i,
+    });
 
-    expect(cards).toHaveLength(projects.length);
+    expect(detailButtons).toHaveLength(projects.length);
+    expect(caseStudyLinks).toHaveLength(
+      projects.filter((project) => project.slug && project.caseStudy).length,
+    );
   });
 });
