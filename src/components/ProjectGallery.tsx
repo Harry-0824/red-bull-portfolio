@@ -134,7 +134,7 @@ export default function ProjectGallery() {
                   <button
                     type="button"
                     onClick={() => handleProjectOpen(project)}
-                    className="inline-flex items-center justify-center rounded-sm bg-rbr-red px-4 py-3 text-sm font-black uppercase tracking-[0.2em] text-white transition hover:bg-red-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow"
+                    className="inline-flex items-center justify-center rounded-sm bg-rbr-red px-4 py-3 text-sm font-black uppercase tracking-[0.2em] text-white transition hover:bg-rbr-navy focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rbr-yellow"
                     aria-label={`View details for ${project.title}`}
                   >
                     View Details
